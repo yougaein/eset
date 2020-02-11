@@ -1,5 +1,5 @@
-require "eset/version"
-require "eset/eset"
+require "tz/version"
+require "tz/eset"
 
 class ESet
   class Error < StandardError; end

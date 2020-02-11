@@ -1,6 +1,7 @@
 require "eset/version"
+require "eset/eset"
 
-module Eset
+class ESet
   class Error < StandardError; end
   # Your code goes here...
 end

@@ -1,0 +1,2 @@
+stl_set_tz_ruby.o: stl_set_tz_ruby.cpp set_tz
+tree_tz.o: tree_tz.cc stl_tree_tz.h

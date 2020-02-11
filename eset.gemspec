@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{Set/Map with external iterator}
   spec.homepage      = "https://github.com/yougaein/eset"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
-  spec.extensions    = %w[ext/es/extconf.rb]
+  spec.extensions    = %w[ext/tz/extconf.rb]
   spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
   spec.metadata["homepage_uri"] = "https://github.com/yougaein/eset"
@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
   spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   end
+  spec.files.reject!{|f| !File.exists?(f)}
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]

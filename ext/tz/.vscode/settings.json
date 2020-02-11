@@ -1,0 +1,126 @@
+{
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\wsl.exe",
+    "workbench.colorCustomizations": {
+        "editor.background": "#400080",
+        "editor.selectionBackground": "#eeff00",
+        "editor.selectionForeground": "#400080",
+        "editor.selectionHighlightBorder" : "#eeff00",
+        "editorCursor.background": "#00eeff",
+        "editorCursor.foreground":"#eeff00",
+        "editor.findMatchBackground" : "#00eeff",
+        "editor.findMatchForeground" : "#00eeff",
+        "editor.findMatchHighlightBorder" : "#00eeff",
+        "editor.wordHighlightBackground" : "#ff00ea",
+        "editor.wordHighlightStrongBackground" : "#ff0000",
+        "searchEditor.findMatchBackground": "#00eeff",
+        "searchEditor.findMatchForeground": "#000000",
+        "editor.findRangeHighlightBorder" : "#00eeff",
+    },
+    "editor.tokenColorCustomizations": {
+        "comments": {
+          "foreground": "#00cf00",
+        },
+        "functions": {
+          "foreground": "#ffffff",
+        },
+        "keywords": {
+            "foreground": "#ffff00",
+          },
+        "numbers": "#00e1ff",
+        "strings": "#00ffff",
+        "types": "#ffffff",
+        "variables": "#ffffff",
+        "textMateRules": [
+            {
+                "scope": "storage.modifier",
+                "settings" :{
+                    "foreground": "#eeff00",
+                }
+            },
+            {
+                "scope": "keyword",
+                "settings" :{
+                    "foreground": "#eeff00",
+                }
+            },
+            {
+                "scope": "storage.type",
+                "settings" :{
+                    "foreground": "#eeff00",
+                }
+            },
+            {
+                "scope": "variable.language.this",
+                "settings" :{
+                    "foreground": "#eeff00",
+                }
+            },
+            {
+                "scope": "keyword.other.operator",
+                "settings" :{
+                    "foreground": "#eeff00",
+                }
+            },
+            {
+                "scope": "entity.name.scope-resolution",
+                "settings" :{
+                    "foreground": "#eeff00",
+                }
+            },
+            {
+                "scope": "meta.preprocessor",
+                "settings" :{
+                    "foreground": "#a5a5a1",
+                    "fontStyle": "bold"
+                }
+            }
+        ]
+    },
+    "files.associations": {
+        "*.tcc": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "functional": "cpp",
+        "cctype": "cpp",
+        "clocale": "cpp",
+        "cmath": "cpp",
+        "cstdarg": "cpp",
+        "cstddef": "cpp",
+        "cstdio": "cpp",
+        "cstdlib": "cpp",
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "cwchar": "cpp",
+        "cwctype": "cpp",
+        "strstream": "cpp",
+        "bitset": "cpp",
+        "complex": "cpp",
+        "cstdint": "cpp",
+        "unordered_map": "cpp",
+        "exception": "cpp",
+        "fstream": "cpp",
+        "initializer_list": "cpp",
+        "iomanip": "cpp",
+        "iosfwd": "cpp",
+        "iostream": "cpp",
+        "istream": "cpp",
+        "limits": "cpp",
+        "new": "cpp",
+        "ostream": "cpp",
+        "numeric": "cpp",
+        "sstream": "cpp",
+        "stdexcept": "cpp",
+        "streambuf": "cpp",
+        "cfenv": "cpp",
+        "cinttypes": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "typeindex": "cpp",
+        "typeinfo": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}

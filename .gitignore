@@ -1,0 +1,20 @@
+*.so
+*.o
+*.nouse
+/**/.vscode/
+/ext/tz/.vscode/
+/ext/tz/tz_stl_auto.cpp
+/ext/tz/stl_tree_tz2.h
+/ext/tz/depend
+/ext/tz/Makefile
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+
+# rspec failure tracking
+.rspec_status

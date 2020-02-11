@@ -1,8 +1,8 @@
 require_relative 'lib/eset/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "eset"
-  spec.version       = Eset::VERSION
+  spec.name          = "ESet"
+  spec.version       = ESet::VERSION
   spec.authors       = ["yougaein"]
   spec.email         = ["github@you.dix.asia"]
 
@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{Set/Map with external iterator}
   spec.homepage      = "https://github.com/yougaein/eset"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
-  spec.extensions    = %w[ext/tz/extconf.rb]
+  spec.extensions    = %w[ext/es/extconf.rb]
   spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
   spec.metadata["homepage_uri"] = "https://github.com/yougaein/eset"

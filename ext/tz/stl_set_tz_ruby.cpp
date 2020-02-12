@@ -144,6 +144,20 @@ struct ESetWrap{
 	}
 
 
+	static VALUE eMSetIt_eq(VALUE self, VALUE arg) {
+		iterator* a = eMSetIt(self);
+		iterator* b = eMSetIt(arg);
+		return *a == *b ? Qtrue : Qnil;
+	}
+
+
+	static VALUE eMSetIt_neq(VALUE self, VALUE arg) {
+		iterator* a = eMSetIt(self);
+		iterator* b = eMSetIt(arg);
+		return *a != *b ? Qtrue : Qnil;
+	}
+
+
 	static VALUE eMSet_upper_bound(VALUE self, VALUE arg) {
 		EMSet* p = eMSet(self);
 		VALUE itv = eMSetIt_alloc(cESetIt);
@@ -237,7 +251,7 @@ struct ESetWrap{
 		if(v != Qnil){
 			if(!rb_block_given_p()){
 				for(iterator it = *bg ; it != *ed ; ++it){
-					if(&*it == NULL){
+					if(it == ((EMSet*)bg->_M_node->_TZ_tree)->end()){
 						rb_raise(rb_eRangeError, "Dereferencing the end iterator");
 						return Qnil;
 					}
@@ -247,7 +261,7 @@ struct ESetWrap{
 				}
 			}else{
 				for(iterator it = *bg ; it != *ed ; ++it){
-					if(&*it == NULL){
+					if(it == ((EMSet*)bg->_M_node->_TZ_tree)->end()){
 						rb_raise(rb_eRangeError, "Dereferencing the end iterator");
 						return Qnil;
 					}
@@ -261,7 +275,7 @@ struct ESetWrap{
 			}
 		}else if(rb_block_given_p()){
 			for(iterator it = *bg ; it != *ed ; ++it){
-				if(&*it == NULL){
+				if(it == ((EMSet*)bg->_M_node->_TZ_tree)->end()){
 					rb_raise(rb_eRangeError, "Dereferencing the end iterator");
 					return Qnil;
 				}
@@ -289,7 +303,7 @@ struct ESetWrap{
 		}
 		VALUE res = Qnil;
 		for(iterator it = *bg ; it != *ed ; ++it){
-			if(&*it == NULL){
+			if(it == ((EMSet*)bg->_M_node->_TZ_tree)->end()){
 				rb_raise(rb_eRangeError, "Dereferencing the end iterator");
 				return Qnil;
 			}
@@ -307,7 +321,7 @@ struct ESetWrap{
 			return Qnil;
 		}
 		for(iterator it = *bg ; it != *ed ; ++it){
-			if(&*it == NULL){
+			if(it == ((EMSet*)bg->_M_node->_TZ_tree)->end()){
 				rb_raise(rb_eRangeError, "Dereferencing the end iterator");
 				return Qnil;
 			}
@@ -339,6 +353,8 @@ struct ESetWrap{
 
 		rb_define_method(cESetIt, "inc", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSetIt_inc), 0);
 		rb_define_method(cESetIt, "dec", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSetIt_dec), 0);
+		rb_define_method(cESetIt, "==", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSetIt_eq), 1);
+		rb_define_method(cESetIt, "!=", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSetIt_neq), 1);
 
 		rb_define_singleton_method(cESet, "find", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSet_find), -1);
 		rb_define_method(cESet, "erase", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSet_erase), 2);
@@ -380,7 +396,7 @@ struct ESetWrapMap_ : ESetWrap<EMSet>{
 	}
 	static VALUE eMSetIt_item(VALUE self) {
 		typename EMSet::iterator* it = ESetWrap<EMSet>::eMSetIt(self);
-		if(&*it == NULL){
+		if(*it == ((EMSet*)it->_M_node->_TZ_tree)->end()){
 			rb_raise(rb_eRangeError, "Dereferencing the end iterator");
 			return Qnil;
 		}else{
@@ -463,7 +479,7 @@ struct ESetWrapSet : ESetWrap<EMSet>{
 	}
 	static VALUE eMSetIt_item(VALUE self) {
 		typename EMSet::iterator* it = ESetWrap<EMSet>::eMSetIt(self);
-		if(&*it == NULL){
+		if(*it == ((EMSet*)it->_M_node->_TZ_tree)->end()){
 			rb_raise(rb_eRangeError, "Dereferencing the end iterator");
 			return Qnil;
 		}else{

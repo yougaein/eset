@@ -51,10 +51,27 @@ def main
 	p ai
 	p s.begin.item.f
 	p s.begin.inc.item.f
-	p s.end.inc.inc.item
 	p 200
+	aj = s.upper_bound Item.new(0.5);
+	ak = s.lower_bound Item.new(0.5);
+	p ak
+	p ak.item
+	it = s.begin
+	while it != s.end
+		toOut = it.item.f.to_s
+		toOut += case it
+		when aj
+			"\t:upper_bound"
+		when ak
+			"\t:lower_bound"
+		else
+			""
+		end
+		print toOut + "\n"
+		it.inc
+	end
 	EMSet.for_each s.begin, s.end do |item|
-		p item.f
+		p [item.f]
 	end
 end
 

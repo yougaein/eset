@@ -225,6 +225,10 @@ struct ESetWrap{
 
 	static VALUE eMSetIt_inc(VALUE self) {
 		iterator* it = eMSetIt(self);
+		if(*it == ((EMSet*)it->_M_node->_TZ_tree)->end()){
+			rb_raise(rb_eRangeError, "advancing over the end");
+			return Qnil;
+		}
 		++*it;
 		return self;
 	}
@@ -232,6 +236,10 @@ struct ESetWrap{
 
 	static VALUE eMSetIt_dec(VALUE self) {
 		iterator* it = eMSetIt(self);
+		if(*it == ((EMSet*)it->_M_node->_TZ_tree)->begin()){
+			rb_raise(rb_eRangeError, "rewinding over the begining");
+			return Qnil;
+		}
 		--*it;
 		return self;
 	}

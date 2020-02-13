@@ -156,4 +156,4 @@ end
 
 fw.close
 
-system "yardoc for_yard_product.rb -o ../../doc"
+system "yardoc for_yard_product.rb -o ../../docs"

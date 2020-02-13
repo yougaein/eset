@@ -1,15 +1,13 @@
-# Eset
+# ESet
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/eset`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Set/Map with external iterator
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'eset'
+gem 'ESet'
 ```
 
 And then execute:
@@ -18,11 +16,11 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install eset
+    $ gem install ESet
 
 ## Usage
 
-TODO: Write usage instructions here
+See https://yougaein.github.io/eset/doc
 
 ## Development
 
@@ -37,4 +35,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 
 ## Code of Conduct
 
-Everyone interacting in the Eset project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/eset/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the ESet project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/eset/blob/master/CODE_OF_CONDUCT.md).

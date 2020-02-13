@@ -1,6 +1,8 @@
+#!/usr/bin/env ruby
 
+fw = File.open "for_yard_product.rb", "w"
 %W{ESet EMSet EMap EMMap}.each do |c|
-    print <<END
+    fw.write <<END
 class #{c}
 #{
     case(c)
@@ -47,7 +49,7 @@ class #{c}
 #{
     case(c)
     when "ESet", "EMSet"
-        "   # @overload insert(position, object)\n"
+        "   # @overload insert(position, obj)\n"
     when "EMap", "EMMap"
         "   # @overload insert(position, key, value)\n"
     end
@@ -62,15 +64,33 @@ class #{c}
         "   #  @param [Object] key key object to be pointed by the inserted elements.\n" +
         "   #  @param [Object] value value object to be pointed by the inserted elements.\n"
     end
+}
+#{
     case(c)
     when "ESet", "EMap"
         "   #  @return [#{c}::Iterator] An iterator pointing to either the newly inserted element or to the element that already had its equivalent in the container.\n"
     else
         "   #  @return [#{c}::Iterator] An iterator pointing to either the newly inserted element.\n"
     end
-}   # @overload insert(object)
+}
+#{
+    case(c)
+    when "ESet", "EMSet"
+        "   # @overload insert(obj)\n"
+    when "EMap", "EMMap"
+        "   # @overload insert(key, value)\n"
+    end
+}
     #  Insert element with an object
-    #  @param [Object] obj  Object to be pointed by the inserted elements.
+#{
+    case(c)
+    when "ESet", "EMSet"
+        "   #  @param [Object] obj key object to be pointed by the inserted elements.\n"
+    when "EMap", "EMMap"
+        "   #  @param [Object] key key object to be pointed by the inserted elements.\n" +
+        "   #  @param [Object] value value object to be pointed by the inserted elements.\n"
+    end
+}
 #{
     case(c)
     when "ESet", "EMap"
@@ -78,7 +98,7 @@ class #{c}
     else
         "   #  @return [#{c}::Iterator] An iterator pointing to either the newly inserted element.\n"
     end
-}   def insert position, obj = nil
+}   def insert *args
     end
     # Removes from the set container a range of elements ([first,last)).
     # Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
@@ -90,13 +110,14 @@ class #{c}
     # @param [#{c}::Iterator] first first iterator.
     # @param [#{c}::Iterator] last last iterator.
     # @param obj Object to search equivalent.
-    def self.find first, last, obj
+    # @return [#{c}::Iterator] iterator pointing the element with equivalent object.
+    def #{c}.find first, last, obj
     end
     # Applies given block to each of the elements in the range [first,last).
     # @param [#{c}::Iterator] first first iterator.
     # @param [#{c}::Iterator] last last iterator.
     # @yieldparam [Object] obj object in an element
-    def self.for_each first, last
+    def #{c}.for_each first, last
     end
     # Iterator class, pointing an element in container
     class Iterator
@@ -132,3 +153,7 @@ class #{c}
 end
 END
 end
+
+fw.close
+
+system "yardoc for_yard_product.rb -o ../../doc"

@@ -25,16 +25,21 @@ class ESet
     # @return [ESet::Iterator] Return iterator to lower bound
     def lower_bound 
     end
-   # @overload insert(position, object)
+   # @overload insert(position, obj)
 
     #  Insert element with an object using a hint
     #  @param [ESet::Iterator] position  Hint for the position where the element can be inserted.
+   #  @param [Object] obj  Object to be pointed by the inserted elements.
+
    #  @return [ESet::Iterator] An iterator pointing to either the newly inserted element or to the element that already had its equivalent in the container.
-   # @overload insert(object)
+
+   # @overload insert(obj)
+
     #  Insert element with an object
-    #  @param [Object] obj  Object to be pointed by the inserted elements.
+   #  @param [Object] obj key object to be pointed by the inserted elements.
+
    #  @return [Array] An array, with its first member set to an iterator pointing to either the newly inserted element or to the equivalent element already in the set. The second member in the array is set to true if a new element was inserted or false if an equivalent element already existed.
-   def insert position, obj = nil
+   def insert *args
     end
     # Removes from the set container a range of elements ([first,last)).
     # Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
@@ -46,13 +51,14 @@ class ESet
     # @param [ESet::Iterator] first first iterator.
     # @param [ESet::Iterator] last last iterator.
     # @param obj Object to search equivalent.
-    def self.find first, last, obj
+    # @return [ESet::Iterator] iterator pointing the element with equivalent object.
+    def ESet.find first, last, obj
     end
     # Applies given block to each of the elements in the range [first,last).
     # @param [ESet::Iterator] first first iterator.
     # @param [ESet::Iterator] last last iterator.
     # @yieldparam [Object] obj object in an element
-    def self.for_each first, last
+    def ESet.for_each first, last
     end
     # Iterator class, pointing an element in container
     class Iterator
@@ -106,16 +112,21 @@ class EMSet
     # @return [EMSet::Iterator] Return iterator to lower bound
     def lower_bound 
     end
-   # @overload insert(position, object)
+   # @overload insert(position, obj)
 
     #  Insert element with an object using a hint
     #  @param [EMSet::Iterator] position  Hint for the position where the element can be inserted.
+   #  @param [Object] obj  Object to be pointed by the inserted elements.
+
    #  @return [EMSet::Iterator] An iterator pointing to either the newly inserted element.
-   # @overload insert(object)
+
+   # @overload insert(obj)
+
     #  Insert element with an object
-    #  @param [Object] obj  Object to be pointed by the inserted elements.
+   #  @param [Object] obj key object to be pointed by the inserted elements.
+
    #  @return [EMSet::Iterator] An iterator pointing to either the newly inserted element.
-   def insert position, obj = nil
+   def insert *args
     end
     # Removes from the set container a range of elements ([first,last)).
     # Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
@@ -127,13 +138,14 @@ class EMSet
     # @param [EMSet::Iterator] first first iterator.
     # @param [EMSet::Iterator] last last iterator.
     # @param obj Object to search equivalent.
-    def self.find first, last, obj
+    # @return [EMSet::Iterator] iterator pointing the element with equivalent object.
+    def EMSet.find first, last, obj
     end
     # Applies given block to each of the elements in the range [first,last).
     # @param [EMSet::Iterator] first first iterator.
     # @param [EMSet::Iterator] last last iterator.
     # @yieldparam [Object] obj object in an element
-    def self.for_each first, last
+    def EMSet.for_each first, last
     end
     # Iterator class, pointing an element in container
     class Iterator
@@ -191,12 +203,19 @@ class EMap
 
     #  Insert element with an object using a hint
     #  @param [EMap::Iterator] position  Hint for the position where the element can be inserted.
+   #  @param [Object] key key object to be pointed by the inserted elements.
+   #  @param [Object] value value object to be pointed by the inserted elements.
+
    #  @return [EMap::Iterator] An iterator pointing to either the newly inserted element or to the element that already had its equivalent in the container.
-   # @overload insert(object)
+
+   # @overload insert(key, value)
+
     #  Insert element with an object
-    #  @param [Object] obj  Object to be pointed by the inserted elements.
+   #  @param [Object] key key object to be pointed by the inserted elements.
+   #  @param [Object] value value object to be pointed by the inserted elements.
+
    #  @return [Array] An array, with its first member set to an iterator pointing to either the newly inserted element or to the equivalent element already in the set. The second member in the array is set to true if a new element was inserted or false if an equivalent element already existed.
-   def insert position, obj = nil
+   def insert *args
     end
     # Removes from the set container a range of elements ([first,last)).
     # Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
@@ -208,13 +227,14 @@ class EMap
     # @param [EMap::Iterator] first first iterator.
     # @param [EMap::Iterator] last last iterator.
     # @param obj Object to search equivalent.
-    def self.find first, last, obj
+    # @return [EMap::Iterator] iterator pointing the element with equivalent object.
+    def EMap.find first, last, obj
     end
     # Applies given block to each of the elements in the range [first,last).
     # @param [EMap::Iterator] first first iterator.
     # @param [EMap::Iterator] last last iterator.
     # @yieldparam [Object] obj object in an element
-    def self.for_each first, last
+    def EMap.for_each first, last
     end
     # Iterator class, pointing an element in container
     class Iterator
@@ -272,12 +292,19 @@ class EMMap
 
     #  Insert element with an object using a hint
     #  @param [EMMap::Iterator] position  Hint for the position where the element can be inserted.
+   #  @param [Object] key key object to be pointed by the inserted elements.
+   #  @param [Object] value value object to be pointed by the inserted elements.
+
    #  @return [EMMap::Iterator] An iterator pointing to either the newly inserted element.
-   # @overload insert(object)
+
+   # @overload insert(key, value)
+
     #  Insert element with an object
-    #  @param [Object] obj  Object to be pointed by the inserted elements.
+   #  @param [Object] key key object to be pointed by the inserted elements.
+   #  @param [Object] value value object to be pointed by the inserted elements.
+
    #  @return [EMMap::Iterator] An iterator pointing to either the newly inserted element.
-   def insert position, obj = nil
+   def insert *args
     end
     # Removes from the set container a range of elements ([first,last)).
     # Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
@@ -289,13 +316,14 @@ class EMMap
     # @param [EMMap::Iterator] first first iterator.
     # @param [EMMap::Iterator] last last iterator.
     # @param obj Object to search equivalent.
-    def self.find first, last, obj
+    # @return [EMMap::Iterator] iterator pointing the element with equivalent object.
+    def EMMap.find first, last, obj
     end
     # Applies given block to each of the elements in the range [first,last).
     # @param [EMMap::Iterator] first first iterator.
     # @param [EMMap::Iterator] last last iterator.
     # @yieldparam [Object] obj object in an element
-    def self.for_each first, last
+    def EMMap.for_each first, last
     end
     # Iterator class, pointing an element in container
     class Iterator

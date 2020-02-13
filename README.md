@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-See [Document page](https://yougaein.github.io/eset/docs)
+See [Document page](https://yougaein.github.io/eset/index.html)
 
 ## Development
 

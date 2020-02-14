@@ -15,8 +15,7 @@ class #{c}
     when "EMMap"
         "   # EMMaps are associative containers with external iterators that store elements formed by a combination of a key and a value, following a specific order, and where multiple elements can have equivalent keys.\n"
     end
-}
-    # initlialize with a block which returns comparing basis like Enumerable::sort_by, however using <, not <=>.
+}    # initlialize with a block which returns comparing basis like Enumerable::sort_by, however using <, not <=>.
 #{
     case(c)
     when "ESet", "EMSet"
@@ -24,8 +23,7 @@ class #{c}
     else
         "   # @yieldparam [Object] key object pointed by an element.\n"
     end
-}
-    # @yieldreturn [Object] should be comparable with method, '<'.
+}    # @yieldreturn [Object] should be comparable with method, '<'.
     def initialize
     end
     # @return [#{c}::Iterator] Return iterator to beginning
@@ -53,8 +51,7 @@ class #{c}
     when "EMap", "EMMap"
         "   # @overload insert(position, key, value)\n"
     end
-}
-    #  Insert element with an object using a hint
+}   #  Insert element with an object using a hint
     #  @param [#{c}::Iterator] position  Hint for the position where the element can be inserted.
 #{
     case(c)
@@ -64,24 +61,21 @@ class #{c}
         "   #  @param [Object] key key object to be pointed by the inserted elements.\n" +
         "   #  @param [Object] value value object to be pointed by the inserted elements.\n"
     end
-}
-#{
+}#{
     case(c)
     when "ESet", "EMap"
         "   #  @return [#{c}::Iterator] An iterator pointing to either the newly inserted element or to the element that already had its equivalent in the container.\n"
     else
         "   #  @return [#{c}::Iterator] An iterator pointing to either the newly inserted element.\n"
     end
-}
-#{
+}#{
     case(c)
     when "ESet", "EMSet"
         "   # @overload insert(obj)\n"
     when "EMap", "EMMap"
         "   # @overload insert(key, value)\n"
     end
-}
-    #  Insert element with an object
+}   #  Insert element with an object
 #{
     case(c)
     when "ESet", "EMSet"
@@ -90,8 +84,7 @@ class #{c}
         "   #  @param [Object] key key object to be pointed by the inserted elements.\n" +
         "   #  @param [Object] value value object to be pointed by the inserted elements.\n"
     end
-}
-#{
+}   #{
     case(c)
     when "ESet", "EMap"
         "   #  @return [Array] An array, with its first member set to an iterator pointing to either the newly inserted element or to the equivalent element already in the set. The second member in the array is set to true if a new element was inserted or false if an equivalent element already existed.\n"
@@ -146,8 +139,7 @@ class #{c}
         "   # dereference the iterator, and returns the key object and the value object\n" +
         "   # @return [Array] Array of the pointed key object and value object\n"
     end
-}
-        def item
+}       def item
         end
     end
 end

@@ -1,4 +1,5 @@
 # ESets are containers with external iterators that store unique elements following a specific order.
+# For use, require 'tz/eset'
 class ESet
     # initlialize with a block which returns comparing basis like Enumerable::sort_by, however using <, not <=>.
     # @yieldparam [Object] obj object pointed by an element.
@@ -78,6 +79,7 @@ class ESet
     end
 end
 # EMSets are containers with external iterators that store elements following a specific order, and where multiple elements can have equivalent values.
+# For use, require 'tz/eset'
 class EMSet
     # initlialize with a block which returns comparing basis like Enumerable::sort_by, however using <, not <=>.
     # @yieldparam [Object] obj object pointed by an element.
@@ -157,6 +159,7 @@ class EMSet
     end
 end
 # EMaps are associative containers with external iterators that store elements formed by a combination of a key and a value, following a specific order.
+# For use, require 'tz/eset'
 class EMap
     # initlialize with a block which returns comparing basis like Enumerable::sort_by, however using <, not <=>.
     # @yieldparam [Object] key object pointed by an element.
@@ -238,6 +241,7 @@ class EMap
     end
 end
 # EMMaps are associative containers with external iterators that store elements formed by a combination of a key and a value, following a specific order, and where multiple elements can have equivalent keys.
+# For use, require 'tz/eset'
 class EMMap
     # initlialize with a block which returns comparing basis like Enumerable::sort_by, however using <, not <=>.
     # @yieldparam [Object] key object pointed by an element.

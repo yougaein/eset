@@ -6,13 +6,13 @@ fw = File.open "for_yard_product.rb", "w"
 #{
     case(c)
     when "ESet"
-        "# ESets are containers with external iterators that store unique elements following a specific order.\n"
+        "# ESets are containers with external iterators that store unique elements following a specific order.\n# For use, require 'tz/eset'\n"
     when "EMSet"
-        "# EMSets are containers with external iterators that store elements following a specific order, and where multiple elements can have equivalent values.\n"
+        "# EMSets are containers with external iterators that store elements following a specific order, and where multiple elements can have equivalent values.\n# For use, require 'tz/eset'\n"
     when "EMap"
-        "# EMaps are associative containers with external iterators that store elements formed by a combination of a key and a value, following a specific order.\n"
+        "# EMaps are associative containers with external iterators that store elements formed by a combination of a key and a value, following a specific order.\n# For use, require 'tz/eset'\n"
     when "EMMap"
-        "# EMMaps are associative containers with external iterators that store elements formed by a combination of a key and a value, following a specific order, and where multiple elements can have equivalent keys.\n"
+        "# EMMaps are associative containers with external iterators that store elements formed by a combination of a key and a value, following a specific order, and where multiple elements can have equivalent keys.\n# For use, require 'tz/eset'\n"
     end
 }class #{c}
     # initlialize with a block which returns comparing basis like Enumerable::sort_by, however using <, not <=>.

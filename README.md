@@ -20,6 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
+require 'tz/eset'
 See [Document page](https://yougaein.github.io/eset/index.html)
 
 ## Development

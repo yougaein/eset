@@ -1,7 +1,7 @@
+# ESets are containers with external iterators that store unique elements following a specific order.
 class ESet
-   # ESets are containers with external iterators that store unique elements following a specific order.
     # initlialize with a block which returns comparing basis like Enumerable::sort_by, however using <, not <=>.
-   # @yieldparam [Object] obj object pointed by an element.
+    # @yieldparam [Object] obj object pointed by an element.
     # @yieldreturn [Object] should be comparable with method, '<'.
     def initialize
     end
@@ -71,16 +71,16 @@ class ESet
         # @return [TRUE|FALSE] true or false
         def !=
         end
-   # dereference the iterator, and returns the pointed object
-   # @return [Object] The pointed object
-       def item
+        # dereference the iterator, and returns the pointed object
+        # @return [Object] The pointed object
+        def item
         end
     end
 end
+# EMSets are containers with external iterators that store elements following a specific order, and where multiple elements can have equivalent values.
 class EMSet
-   # EMSets are containers with external iterators that store elements following a specific order, and where multiple elements can have equivalent values.
     # initlialize with a block which returns comparing basis like Enumerable::sort_by, however using <, not <=>.
-   # @yieldparam [Object] obj object pointed by an element.
+    # @yieldparam [Object] obj object pointed by an element.
     # @yieldreturn [Object] should be comparable with method, '<'.
     def initialize
     end
@@ -102,16 +102,16 @@ class EMSet
     # @return [EMSet::Iterator] Return iterator to lower bound
     def lower_bound 
     end
-   # @overload insert(position, obj)
-   #  Insert element with an object using a hint
+    # @overload insert(position, obj)
+    #  Insert element with an object using a hint
     #  @param [EMSet::Iterator] position  Hint for the position where the element can be inserted.
-   #  @param [Object] obj  Object to be pointed by the inserted elements.
-   #  @return [EMSet::Iterator] An iterator pointing to either the newly inserted element.
-   # @overload insert(obj)
-   #  Insert element with an object
-   #  @param [Object] obj key object to be pointed by the inserted elements.
-      #  @return [EMSet::Iterator] An iterator pointing to either the newly inserted element.
-   def insert *args
+    #  @param [Object] obj  Object to be pointed by the inserted elements.
+    #  @return [EMSet::Iterator] An iterator pointing to either the newly inserted element.
+    # @overload insert(obj)
+    #  Insert element with an object
+    #  @param [Object] obj key object to be pointed by the inserted elements.
+    #  @return [EMSet::Iterator] An iterator pointing to either the newly inserted element.
+    def insert *args
     end
     # Removes from the set container a range of elements ([first,last)).
     # Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
@@ -150,16 +150,16 @@ class EMSet
         # @return [TRUE|FALSE] true or false
         def !=
         end
-   # dereference the iterator, and returns the pointed object
-   # @return [Object] The pointed object
-       def item
+        # dereference the iterator, and returns the pointed object
+        # @return [Object] The pointed object
+        def item
         end
     end
 end
+# EMaps are associative containers with external iterators that store elements formed by a combination of a key and a value, following a specific order.
 class EMap
-   # EMaps are associative containers with external iterators that store elements formed by a combination of a key and a value, following a specific order.
     # initlialize with a block which returns comparing basis like Enumerable::sort_by, however using <, not <=>.
-   # @yieldparam [Object] key object pointed by an element.
+    # @yieldparam [Object] key object pointed by an element.
     # @yieldreturn [Object] should be comparable with method, '<'.
     def initialize
     end
@@ -181,18 +181,18 @@ class EMap
     # @return [EMap::Iterator] Return iterator to lower bound
     def lower_bound 
     end
-   # @overload insert(position, key, value)
-   #  Insert element with an object using a hint
+    # @overload insert(position, key, value)
+    #  Insert element with an object using a hint
     #  @param [EMap::Iterator] position  Hint for the position where the element can be inserted.
-   #  @param [Object] key key object to be pointed by the inserted elements.
-   #  @param [Object] value value object to be pointed by the inserted elements.
-   #  @return [EMap::Iterator] An iterator pointing to either the newly inserted element or to the element that already had its equivalent in the container.
-   # @overload insert(key, value)
-   #  Insert element with an object
-   #  @param [Object] key key object to be pointed by the inserted elements.
-   #  @param [Object] value value object to be pointed by the inserted elements.
-      #  @return [Array] An array, with its first member set to an iterator pointing to either the newly inserted element or to the equivalent element already in the set. The second member in the array is set to true if a new element was inserted or false if an equivalent element already existed.
-   def insert *args
+    #  @param [Object] key key object to be pointed by the inserted elements.
+    #  @param [Object] value value object to be pointed by the inserted elements.
+    #  @return [EMap::Iterator] An iterator pointing to either the newly inserted element or to the element that already had its equivalent in the container.
+    # @overload insert(key, value)
+    #  Insert element with an object
+    #  @param [Object] key key object to be pointed by the inserted elements.
+    #  @param [Object] value value object to be pointed by the inserted elements.
+    #  @return [Array] An array, with its first member set to an iterator pointing to either the newly inserted element or to the equivalent element already in the set. The second member in the array is set to true if a new element was inserted or false if an equivalent element already existed.
+    def insert *args
     end
     # Removes from the set container a range of elements ([first,last)).
     # Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
@@ -231,16 +231,16 @@ class EMap
         # @return [TRUE|FALSE] true or false
         def !=
         end
-   # dereference the iterator, and returns the key object and the value object
-   # @return [Array] Array of the pointed key object and value object
-       def item
+        # dereference the iterator, and returns the key object and the value object
+        # @return [Array] Array of the pointed key object and value object
+        def item
         end
     end
 end
+# EMMaps are associative containers with external iterators that store elements formed by a combination of a key and a value, following a specific order, and where multiple elements can have equivalent keys.
 class EMMap
-   # EMMaps are associative containers with external iterators that store elements formed by a combination of a key and a value, following a specific order, and where multiple elements can have equivalent keys.
     # initlialize with a block which returns comparing basis like Enumerable::sort_by, however using <, not <=>.
-   # @yieldparam [Object] key object pointed by an element.
+    # @yieldparam [Object] key object pointed by an element.
     # @yieldreturn [Object] should be comparable with method, '<'.
     def initialize
     end
@@ -262,18 +262,18 @@ class EMMap
     # @return [EMMap::Iterator] Return iterator to lower bound
     def lower_bound 
     end
-   # @overload insert(position, key, value)
-   #  Insert element with an object using a hint
+    # @overload insert(position, key, value)
+    #  Insert element with an object using a hint
     #  @param [EMMap::Iterator] position  Hint for the position where the element can be inserted.
-   #  @param [Object] key key object to be pointed by the inserted elements.
-   #  @param [Object] value value object to be pointed by the inserted elements.
-   #  @return [EMMap::Iterator] An iterator pointing to either the newly inserted element.
-   # @overload insert(key, value)
-   #  Insert element with an object
-   #  @param [Object] key key object to be pointed by the inserted elements.
-   #  @param [Object] value value object to be pointed by the inserted elements.
-      #  @return [EMMap::Iterator] An iterator pointing to either the newly inserted element.
-   def insert *args
+    #  @param [Object] key key object to be pointed by the inserted elements.
+    #  @param [Object] value value object to be pointed by the inserted elements.
+    #  @return [EMMap::Iterator] An iterator pointing to either the newly inserted element.
+    # @overload insert(key, value)
+    #  Insert element with an object
+    #  @param [Object] key key object to be pointed by the inserted elements.
+    #  @param [Object] value value object to be pointed by the inserted elements.
+    #  @return [EMMap::Iterator] An iterator pointing to either the newly inserted element.
+    def insert *args
     end
     # Removes from the set container a range of elements ([first,last)).
     # Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
@@ -312,9 +312,9 @@ class EMMap
         # @return [TRUE|FALSE] true or false
         def !=
         end
-   # dereference the iterator, and returns the key object and the value object
-   # @return [Array] Array of the pointed key object and value object
-       def item
+        # dereference the iterator, and returns the key object and the value object
+        # @return [Array] Array of the pointed key object and value object
+        def item
         end
     end
 end

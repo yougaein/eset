@@ -23,16 +23,16 @@ class ESet
     # @return [ESet::Iterator] Return iterator to lower bound
     def lower_bound 
     end
-   # @overload insert(position, obj)
-   #  Insert element with an object using a hint
+    # @overload insert(position, obj)
+    #  Insert element with an object using a hint
     #  @param [ESet::Iterator] position  Hint for the position where the element can be inserted.
-   #  @param [Object] obj  Object to be pointed by the inserted elements.
-   #  @return [ESet::Iterator] An iterator pointing to either the newly inserted element or to the element that already had its equivalent in the container.
-   # @overload insert(obj)
-   #  Insert element with an object
-   #  @param [Object] obj key object to be pointed by the inserted elements.
-      #  @return [Array] An array, with its first member set to an iterator pointing to either the newly inserted element or to the equivalent element already in the set. The second member in the array is set to true if a new element was inserted or false if an equivalent element already existed.
-   def insert *args
+    #  @param [Object] obj  Object to be pointed by the inserted elements.
+    #  @return [ESet::Iterator] An iterator pointing to either the newly inserted element or to the element that already had its equivalent in the container.
+    # @overload insert(obj)
+    #  Insert element with an object
+    #  @param [Object] obj key object to be pointed by the inserted elements.
+    #  @return [Array] An array, with its first member set to an iterator pointing to either the newly inserted element or to the equivalent element already in the set. The second member in the array is set to true if a new element was inserted or false if an equivalent element already existed.
+    def insert *args
     end
     # Removes from the set container a range of elements ([first,last)).
     # Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.

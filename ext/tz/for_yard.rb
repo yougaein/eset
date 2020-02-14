@@ -93,6 +93,25 @@ fw = File.open "for_yard_product.rb", "w"
     end
 }    def insert *args
     end
+END
+if c == "EMap"
+        fw.write <<FOR_EMAP
+    # @overload insert_or_assign(k, v)
+    #  If a key equivalent to 'k' already exists in the container, assigns 'v' to value corresponding to the key. If the key does not exist, inserts the new value as if by insert.
+    #  @param [Object] k key object
+    #  @param [Object] v value object
+    #  @return [Array] An array, with its first member set to an iterator pointing to either the newly inserted element or to the equivalent element already in the set. The second member in the array is set to true if a new element was inserted or false if an equivalent element already existed.
+    # @overload insert_or_assign(position, k, v)
+    #  Insert element with key and value using a hint
+    #  @param [#{c}::Iterator] position  Hint for the position where the element can be inserted.
+    #  @param [Object] k key object
+    #  @param [Object] v value object
+    #  @return [#{c}::Iterator] Iterator pointing at the element that was inserted or updated
+    def insert_or_assign *args
+    end
+FOR_EMAP
+end
+    fw.write <<END2
     # Removes from the set container a range of elements ([first,last)).
     # Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
     # @param [#{c}::Iterator] first first iterator.
@@ -143,7 +162,7 @@ fw = File.open "for_yard_product.rb", "w"
         end
     end
 end
-END
+END2
 end
 
 fw.close

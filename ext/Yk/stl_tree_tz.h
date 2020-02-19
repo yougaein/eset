@@ -110,7 +110,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     	_M_right = this;
     	_M_parent = 0;
     	_M_color = _S_red;
-      //std::cout << "destructed:" << this << std::endl;
     }
     void prepareDestroy(void (*destroyer)(_Rb_tree_node_base*)){
     	_M_left = this;
@@ -188,7 +187,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       typedef _Rb_tree_node<_Tp>*           _Link_type;
 
       _Rb_tree_iterator()
-      : _M_node(0) { }
+      : _M_node(0) { 
+      }
 
       explicit
       _Rb_tree_iterator(_Link_type __x)
@@ -197,6 +197,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       }
       
       _Rb_tree_iterator(const _Rb_tree_iterator<_Tp>& arg) : _M_node(arg._M_node){
+        if(_M_node)
       	_M_node->_TZ_refCount += 1;
       }
 
@@ -211,10 +212,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       _Rb_tree_iterator<_Tp>& operator=(const _Rb_tree_iterator<_Tp>& arg){
     	 if(_M_node != arg._M_node){
-    		if(_M_node){
+    		if(_M_node)
     			_M_node->_TZ_refCount -= 1;
-    		}
     		_M_node = arg._M_node;
+        if(_M_node)
     		_M_node->_TZ_refCount += 1;
     	 }
     	 return *this;
@@ -299,7 +300,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       typedef const _Rb_tree_node<_Tp>*           _Link_type;
 
       _Rb_tree_const_iterator()
-      : _M_node(0) { }
+      : _M_node(0) { 
+      }
 
       explicit
       _Rb_tree_const_iterator(_Link_type __x)
@@ -309,25 +311,31 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       _Rb_tree_const_iterator(const iterator& __it)
       : _M_node(__it._M_node) {
+        if(_M_node)
+    	  ((_Rb_tree_node_base*)_M_node)->_TZ_refCount += 1;
+      }
+
+      _Rb_tree_const_iterator(const _Rb_tree_const_iterator& __it) : _M_node(__it._M_node) {
+        if(_M_node)
     	  ((_Rb_tree_node_base*)_M_node)->_TZ_refCount += 1;
       }
 
       ~_Rb_tree_const_iterator(){
-    	  ((_Rb_tree_node_base*)_M_node)->_TZ_refCount -= 1;
-      	if(_M_node->_TZ_refCount == 0 && _M_node->_TZ_destroyer){
-  				_M_node->_TZ_destroyer((_Rb_tree_node_base*)_M_node);
-          //std::cout << "delete from ~iterator:" << _M_node << std::endl;
-      		//delete _M_node;
-      	}
+        if(_M_node){
+          ((_Rb_tree_node_base*)_M_node)->_TZ_refCount -= 1;
+          if(_M_node->_TZ_refCount == 0 && _M_node->_TZ_destroyer){
+            _M_node->_TZ_destroyer((_Rb_tree_node_base*)_M_node);
+          }
+        }
       }
 
       _Rb_tree_const_iterator<_Tp>& operator=(const _Rb_tree_const_iterator<_Tp>& arg){
     	 if(_M_node != arg._M_node){
-    		if(_M_node){
+    		if(_M_node)
     			((_Rb_tree_node_base*)_M_node)->_TZ_refCount -= 1;
-    		}
     		_M_node = arg._M_node;
-    		((_Rb_tree_node_base*)_M_node)->_TZ_refCount += 1;
+    		if(_M_node)
+    		  ((_Rb_tree_node_base*)_M_node)->_TZ_refCount += 1;
     	 }
     	 return *this;
       }
@@ -463,14 +471,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _M_get_node()
       {
     	  _Link_type tmp = _M_impl._Node_allocator::allocate(1);
-    	  //std::cout << "get:" << tmp << endl;
     	  return tmp;
       }
 
       void
       _M_put_node(_Link_type __p)
       { 
-    	  //std::cout << "put:" << __p << endl;
     	  if(__p->_TZ_refCount == 0)
       	_M_impl._Node_allocator::deallocate(__p, 1);
       }
@@ -1152,13 +1158,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  _M_erase(_S_right(__x));
 	  _Link_type __y = _S_left(__x);
-    //std::cout << "destroying node:(" << __x->_TZ_refCount << "):" << __x << std::endl;
 	  if(__x->_TZ_refCount == 0){
 		  _M_destroy_node(__x);
-      //std::cout << "destroyed" << std::endl;
     }else{
 		  __x->prepareDestroy(&_Rb_tree_impl<_Compare>::destroyNode);
-      //std::cout << "prepared" << std::endl;
     }
 	  __x = __y;
 	}

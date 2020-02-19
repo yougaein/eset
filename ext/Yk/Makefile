@@ -134,7 +134,7 @@ DISTCLEANDIRS =
 
 extout = 
 extout_prefix = 
-target_prefix = /tz
+target_prefix = /Yk
 LOCAL_LIBS = 
 LIBS =  -lstdc++  -lm   -lc
 ORIG_SRCS = stl_set_tz_ruby.cpp tree_tz.cc tz_stl_auto.cpp
@@ -142,8 +142,8 @@ SRCS = $(ORIG_SRCS)
 OBJS = stl_set_tz_ruby.o tree_tz.o tz_stl_auto.o
 HDRS = $(srcdir)/stl_map_tz.h $(srcdir)/stl_multimap_tz.h $(srcdir)/stl_multiset_tz.h $(srcdir)/stl_set_tz.h $(srcdir)/stl_tree_tz.h
 LOCAL_HDRS = 
-TARGET = eset
-TARGET_NAME = eset
+TARGET = ESet
+TARGET_NAME = ESet
 TARGET_ENTRY = Init_$(TARGET_NAME)
 DLLIB = $(TARGET).so
 EXTSTATIC = 
@@ -185,7 +185,7 @@ distclean: clean distclean-so distclean-static distclean-rb-default distclean-rb
 realclean: distclean
 install: install-so install-rb
 
-install-so: $(DLLIB) $(TIMESTAMP_DIR)/.sitearchdir.-.tz.time
+install-so: $(DLLIB) $(TIMESTAMP_DIR)/.sitearchdir.-.Yk.time
 	$(INSTALL_PROG) $(DLLIB) $(RUBYARCHDIR)
 clean-static::
 	-$(Q)$(RM) $(STATIC_LIB)
@@ -197,7 +197,7 @@ do-install-rb:
 do-install-rb-default:
 pre-install-rb-default:
 	@$(NULLCMD)
-$(TIMESTAMP_DIR)/.sitearchdir.-.tz.time:
+$(TIMESTAMP_DIR)/.sitearchdir.-.Yk.time:
 	$(Q) $(MAKEDIRS) $(@D) $(RUBYARCHDIR)
 	$(Q) $(TOUCH) $@
 
@@ -256,7 +256,7 @@ site-install-rb: install-rb
 	$(Q) $(CC) $(INCFLAGS) $(CPPFLAGS) $(CFLAGS) $(COUTFLAG)$@ -S $(CSRCFLAG)$<
 
 $(TARGET_SO): $(OBJS) Makefile
-	$(ECHO) linking shared-object tz/$(DLLIB)
+	$(ECHO) linking shared-object Yk/$(DLLIB)
 	-$(Q)$(RM) $(@)
 	$(Q) $(LDSHAREDXX) -o $@ $(OBJS) $(LIBPATH) $(DLDFLAGS) $(LOCAL_LIBS) $(LIBS)
 

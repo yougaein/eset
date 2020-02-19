@@ -2,10 +2,10 @@
 
 GC::Profiler.enable
 #require 'tz/eset'
-if File.exists? './eset.so'
-	require './eset'
+if File.exists? './ESet.so'
+	require './ESet'
 else
-	require 'Yk/eset'
+	require 'Yk/ESet'
 end
 #require 'tz/debug2'
 
@@ -71,12 +71,45 @@ def main
 		print toOut + "\n"
 		it.inc
 	end
-	EMSet.for_each s.begin, s.end do |item|
-		p [item.f]
+	EMSet.for_each s.begin, s.end do |o|
+		p [o.f]
+	end
+
+	
+	
+
+
+end
+
+main
+
+class Foo
+	attr :f
+	def initialize f
+		@f = f
 	end
 end
 
+s = ESet.new
+s = ESet.new do |o|
+	o.f
+end
 
-main
+s.insert Foo.new(rand)
+s.insert Foo.new(rand)
+s.insert Foo.new(rand)
+s.insert Foo.new(rand)
+
+ESet.for_each s.begin, s.end do |foo|
+	p foo.f
+end
+
+it = s.begin
+while it != s.end
+	p it.item
+	it.inc
+end
+
+
 
 

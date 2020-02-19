@@ -152,7 +152,7 @@ struct ESetWrap{
 			return Qnil;
 		}
 		iterator* b = eMSetIt(arg);
-		return *a == *b ? Qtrue : Qnil;
+		return *a == *b ? Qtrue : Qfalse;
 	}
 
 
@@ -163,7 +163,7 @@ struct ESetWrap{
 			return Qnil;
 		}
 		iterator* b = eMSetIt(arg);
-		return *a != *b ? Qtrue : Qnil;
+		return *a != *b ? Qtrue : Qfalse;
 	}
 
 
@@ -533,7 +533,7 @@ struct ESetWrapSet : ESetWrap<EMSet>{
 };
 
 
-extern "C" void Init_eset(void){
+extern "C" void Init_ESet(void){
 	rb_mYk = rb_define_module("Yk");
 	ID_CALL = rb_intern("call");
 	ID_LESS = rb_intern("<");

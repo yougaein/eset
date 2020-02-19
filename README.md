@@ -20,7 +20,33 @@ Or install it yourself as:
 
 ## Usage
 
-require 'tz/eset'
+class Foo
+	attr :f
+	def initialize f
+		@f = f
+	end
+end
+
+s = ESet.new
+s = ESet.new do |o|
+	o.f
+end
+
+s.insert Foo.new(rand)
+s.insert Foo.new(rand)
+s.insert Foo.new(rand)
+s.insert Foo.new(rand)
+
+ESet.for_each s.begin, s.end do |foo|
+	p foo.f
+end
+
+it = s.begin
+while it != s.end
+	p it.item
+	it.inc
+end
+
 See [Document page](https://yougaein.github.io/eset/index.html)
 
 ## Development

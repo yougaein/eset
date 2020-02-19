@@ -230,6 +230,25 @@ struct ESetWrap{
 		return rb_ary_new_from_values(2, (const VALUE*)&elts);
 	}
 
+	inline static VALUE toValue(pair<VALUE, VALUE> r){
+		VALUE elts[2] = {r.first, r.second};
+		return rb_ary_new_from_values(2, (const VALUE*)&elts);
+	}
+
+	inline static VALUE toValue(VALUE r){
+		return r;
+	}
+
+
+	inline static VALUE getFirst(pair<VALUE, VALUE> r){
+		return r.first;
+	}
+
+	inline static VALUE getFirst(VALUE r){
+		return r;
+	}
+
+
 	template <class T>
 	inline static VALUE insertRet(T r){
 		VALUE itv = eMSetIt_alloc(cESetIt);
@@ -286,9 +305,9 @@ struct ESetWrap{
 						rb_raise(rb_eRangeError, "Dereferencing the end iterator");
 						return Qnil;
 					}
-					VALUE res = rb_funcall(*it, ID_EQ, 1, v);
+					VALUE res = rb_funcall(getFirst(*it), ID_EQ, 1, v);
 					if(res != Qnil && res != Qfalse)
-						return *it;
+						return toValue(*it);
 				}
 			}else{
 				for(iterator it = *bg ; it != *ed ; ++it){
@@ -296,11 +315,11 @@ struct ESetWrap{
 						rb_raise(rb_eRangeError, "Dereferencing the end iterator");
 						return Qnil;
 					}
-					VALUE res = rb_funcall(*it, ID_EQ, 1, v);
+					VALUE res = rb_funcall(getFirst(*it), ID_EQ, 1, v);
 					if(res != Qnil && res != Qfalse){
-						res = rb_yield(*it);
+						res = rb_yield(getFirst(*it));
 						if(res != Qnil && res != Qfalse)
-							return *it;
+							return toValue(*it);
 					}
 				}
 			}
@@ -310,9 +329,9 @@ struct ESetWrap{
 					rb_raise(rb_eRangeError, "Dereferencing the end iterator");
 					return Qnil;
 				}
-				VALUE res = rb_yield(*it);
+				VALUE res = rb_yield(getFirst(*it));
 				if(res != Qnil && res != Qfalse)
-					return *it;
+					return toValue(*it);
 			}
 		}else{
 			rb_raise(rb_eArgError, "Both argument and block are missing");
@@ -346,7 +365,7 @@ struct ESetWrap{
 				rb_raise(rb_eRangeError, "Dereferencing the end iterator");
 				return Qnil;
 			}
-			res = rb_yield(*it);
+			res = rb_yield(toValue(*it));
 		}
 		return res;
 	}
@@ -388,24 +407,25 @@ struct ESetWrap{
 		cESet = rb_define_class_under(rb_mYk, cName, rb_cObject);
 		cESetIt = rb_define_class_under(cESet, "Iterator", rb_cObject);
 
-		rb_define_alloc_func(cESet, ESetWrap<ESet>::eMSet_alloc);
-		rb_define_alloc_func(cESetIt, ESetWrap<ESet>::eMSetIt_alloc);
-		rb_define_method(cESet, "initialize", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSet_init), -1);
-		rb_define_method(cESet, "begin", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSet_begin), 0);
-		rb_define_method(cESet, "end", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSet_end), 0);
-		rb_define_method(cESet, "size", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSet_size), 0);
-		rb_define_method(cESet, "clear", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSet_clear), 0);
-		rb_define_method(cESet, "upper_bound", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSet_upper_bound), 1);
-		rb_define_method(cESet, "lower_bound", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSet_lower_bound), 1);
+		rb_define_alloc_func(cESet, ESetWrap<EMSet>::eMSet_alloc);
+		rb_define_alloc_func(cESetIt, ESetWrap<EMSet>::eMSetIt_alloc);
+		rb_define_method(cESet, "initialize", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_init), -1);
+		rb_define_method(cESet, "size", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_size), 0);
+		rb_define_method(cESet, "clear", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_clear), 0);
 
-		rb_define_method(cESetIt, "inc", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSetIt_inc), 0);
-		rb_define_method(cESetIt, "dec", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSetIt_dec), 0);
-		rb_define_method(cESetIt, "==", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSetIt_eq), 1);
-		rb_define_method(cESetIt, "!=", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSetIt_neq), 1);
+		rb_define_method(cESet, "begin", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_begin), 0);
+		rb_define_method(cESet, "end", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_end), 0);
+		rb_define_method(cESet, "upper_bound", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_upper_bound), 1);
+		rb_define_method(cESet, "lower_bound", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_lower_bound), 1);
 
-		rb_define_singleton_method(cESet, "find", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSet_find), -1);
-		rb_define_method(cESet, "erase", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSet_erase), 2);
-		rb_define_singleton_method(cESet, "for_each", RUBY_METHOD_FUNC(ESetWrap<ESet>::eMSet_for_each), 2);
+		rb_define_method(cESetIt, "inc", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSetIt_inc), 0);
+		rb_define_method(cESetIt, "dec", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSetIt_dec), 0);
+		rb_define_method(cESetIt, "==", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSetIt_eq), 1);
+		rb_define_method(cESetIt, "!=", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSetIt_neq), 1);
+
+		rb_define_singleton_method(cESet, "find", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_find), -1);
+		rb_define_method(cESet, "erase", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_erase), 2);
+		rb_define_singleton_method(cESet, "for_each", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_for_each), 2);
 	}
 
 };
@@ -416,34 +436,34 @@ VALUE ESetWrap<EMSet>::cESet = Qnil;
 template <typename EMSet>
 VALUE ESetWrap<EMSet>::cESetIt = Qnil;
 
-template <typename EMSet>
-struct ESetWrapMap_ : ESetWrap<EMSet>{
+template <typename E>
+struct ESetWrapMap_ : ESetWrap<E>{
 	static VALUE eMSet_insert(int argc, VALUE *argv, VALUE self){
-		EMSet* p = ESetWrap<EMSet>::eMSet(self);
+		E* p = ESetWrap<E>::eMSet(self);
 		VALUE a1, a2, a3;
 		rb_scan_args(argc, argv, "21", &a1, &a2, &a3);
 		if(argc == 2){
 			decltype(p->insert(std::make_pair(a1, a2))) ret;
 			ret = p->insert(std::make_pair(a1, a2));
-			return ESetWrap<EMSet>::insertRet(ret);
+			return ESetWrap<E>::insertRet(ret);
 		}else{
-			if(!rb_obj_is_instance_of(a1, ESetWrap<EMSet>::cESetIt)){
+			if(!rb_obj_is_instance_of(a1, ESetWrap<E>::cESetIt)){
 				rb_raise(rb_eArgError, "First argument is not a compatible iterator");
 				return Qnil;
 			}
-			typename EMSet::iterator* iit = ESetWrap<EMSet>::eMSetIt(a1);
-			if((EMSet*)(*iit)._M_node->_TZ_tree != p){
+			typename E::iterator* iit = ESetWrap<E>::eMSetIt(a1);
+			if((E*)(*iit)._M_node->_TZ_tree != p){
 				rb_raise(rb_eArgError, "Referece iterator is not from the method reciever's container");
 				return Qnil;
 			}
 			decltype(p->insert(*iit, std::make_pair(a2, a3))) ret;
 			ret = p->insert(*iit, std::make_pair(a2, a3));
-			return ESetWrap<EMSet>::insertRet(ret);
+			return ESetWrap<E>::insertRet(ret);
 		}
 	}
 	static VALUE eMSetIt_item(VALUE self) {
-		typename EMSet::iterator* it = ESetWrap<EMSet>::eMSetIt(self);
-		if(*it == ((EMSet*)it->_M_node->_TZ_tree)->end()){
+		typename E::iterator* it = ESetWrap<E>::eMSetIt(self);
+		if(*it == ((E*)it->_M_node->_TZ_tree)->end()){
 			rb_raise(rb_eRangeError, "Dereferencing the end iterator");
 			return Qnil;
 		}else{
@@ -452,9 +472,9 @@ struct ESetWrapMap_ : ESetWrap<EMSet>{
 		}
 	}
 	static void Init_eset(const char* n){
-		ESetWrap<EMSet>::Init_eset(n);
-		rb_define_method(ESetWrap<EMSet>::cESet, "insert", RUBY_METHOD_FUNC(eMSet_insert), -1);
-		rb_define_method(ESetWrap<EMSet>::cESetIt, "item", RUBY_METHOD_FUNC(eMSetIt_item), 0);
+		ESetWrap<E>::Init_eset(n);
+		rb_define_method(ESetWrap<E>::cESet, "insert", RUBY_METHOD_FUNC(eMSet_insert), -1);
+		rb_define_method(ESetWrap<E>::cESetIt, "item", RUBY_METHOD_FUNC(eMSetIt_item), 0);
 	};
 };
 
@@ -464,9 +484,8 @@ struct ESetWrapMap : ESetWrapMap_<EMTMap>{
 
 template <>
 struct ESetWrapMap<EMap> : ESetWrapMap_<EMap>{
-	typedef EMap EMSet;
 	static VALUE eMSet_insert_or_assign(int argc, VALUE *argv, VALUE self){
-		EMSet* p = ESetWrap<EMSet>::eMSet(self);
+		EMap* p = ESetWrap<EMap>::eMSet(self);
 		VALUE a1, a2, a3;
 		rb_scan_args(argc, argv, "21", &a1, &a2, &a3);
 		if(argc == 2){
@@ -474,14 +493,14 @@ struct ESetWrapMap<EMap> : ESetWrapMap_<EMap>{
 			ret = p->insert(std::make_pair(a1, a2));
 			if(!ret.second)
 				ret.first->second = a2;
-			return ESetWrap<EMSet>::insertRet(ret);
+			return ESetWrap<EMap>::insertRet(ret);
 		}else{
 			if(!rb_obj_is_instance_of(a1, cESetIt)){
 				rb_raise(rb_eArgError, "First argument is not an iterator");
 				return Qnil;
 			}
 			iterator* iit = eMSetIt(a1);
-			if((EMSet*)(*iit)._M_node->_TZ_tree != p){
+			if((EMap*)(*iit)._M_node->_TZ_tree != p){
 				rb_raise(rb_eArgError, "Referece iterator is not from the method reciever's container");
 				return Qnil;
 			}
@@ -489,12 +508,12 @@ struct ESetWrapMap<EMap> : ESetWrapMap_<EMap>{
 			ret = p->insert(*iit, std::make_pair(a2, a3));
 			if((*ret).second != a3)
 				(*ret).second = a3;
-			return ESetWrap<EMSet>::insertRet(ret);
+			return ESetWrap<EMap>::insertRet(ret);
 		}
 	}
 	static void Init_eset(const char* n){
-		ESetWrapMap_<EMSet>::Init_eset(n);
-		rb_define_method(ESetWrap<EMSet>::cESet, "insert_or_assign", RUBY_METHOD_FUNC(eMSet_insert_or_assign), -1);
+		ESetWrapMap_<EMap>::Init_eset(n);
+		rb_define_method(ESetWrap<EMap>::cESet, "insert_or_assign", RUBY_METHOD_FUNC(eMSet_insert_or_assign), -1);
 	}	
 };
 

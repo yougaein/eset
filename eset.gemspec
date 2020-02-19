@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{Set/Map with external iterator}
   spec.homepage      = "https://github.com/yougaein/eset"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
-  spec.extensions    = %w[ext/tz/extconf.rb]
+  spec.extensions    = %w[ext/Yk/extconf.rb]
   spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
   spec.metadata["homepage_uri"] = "https://github.com/yougaein/eset"

@@ -10,13 +10,13 @@ EPRE
 #{
     case(c)
     when "ESet"
-        "# ESets are containers with external iterators that store unique elements following a specific order. For use, require 'tz/eset'\n"
+        "# ESets are containers with external iterators that store unique elements following a specific order. For use, require 'Yk/ESet';include Yk;\n"
     when "EMSet"
-        "# EMSets are containers with external iterators that store elements following a specific order, and where multiple elements can have equivalent values. For use, require 'tz/eset'\n"
+        "# EMSets are containers with external iterators that store elements following a specific order, and where multiple elements can have equivalent values. For use, require 'Yk/ESet';include Yk;\n"
     when "EMap"
-        "# EMaps are associative containers with external iterators that store elements formed by a combination of a key and a value, following a specific order. For use, require 'tz/eset'\n"
+        "# EMaps are associative containers with external iterators that store elements formed by a combination of a key and a value, following a specific order. For use, require 'Yk/ESet';include Yk;\n"
     when "EMMap"
-        "# EMMaps are associative containers with external iterators that store elements formed by a combination of a key and a value, following a specific order, and where multiple elements can have equivalent keys. For use, require 'tz/eset'\n"
+        "# EMMaps are associative containers with external iterators that store elements formed by a combination of a key and a value, following a specific order, and where multiple elements can have equivalent keys. For use, 'Yk/ESet';include Yk;\n"
     end
 }class #{c}
     # initlialize with a block which returns comparing basis like Enumerable::sort_by, however using <, not <=>.

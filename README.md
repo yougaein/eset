@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage  
 
-`
+#    
 require 'Yk/ESet'  
 include Yk  
   
@@ -52,8 +52,8 @@ while it != s.end
 end  
  
 See [Document page](https://yougaein.github.io/eset/index.html)  
-`
-  
+
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

@@ -1,3 +1,3 @@
 class ESet
-  VERSION = "1.0.0"
+  VERSION = "0.99.0"
 end

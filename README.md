@@ -49,7 +49,7 @@ Or install it yourself as:
 	    it.inc  
     end  
     
-    See [Document page](https://yougaein.github.io/eset/index.html)  
+See [Document page](https://yougaein.github.io/eset/index.html)  
 
 
 ## Development

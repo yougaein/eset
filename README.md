@@ -47,7 +47,16 @@ Or install it yourself as:
     while it != s.end  
 	    p it.item  
 	    it.inc  
-    end  
+    end
+    
+    jt = it
+    it.inc
+    p it == jt #true
+    jt = it.clone
+    jt.inc
+    p it != jt #true
+
+
     
 See [Document page](https://yougaein.github.io/eset/index.html)  
 

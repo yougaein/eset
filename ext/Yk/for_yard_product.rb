@@ -68,6 +68,10 @@ class ESet
     end
     # Iterator class, pointing an element in container
     class Iterator
+        # newly construct a clone iterator
+        # @return [ESet::Iterator] self
+        def clone
+        end
         # increment the position
         # @return [ESet::Iterator] self
         # @raise RangeError raised when advancing over the end
@@ -167,6 +171,10 @@ class EMSet
     end
     # Iterator class, pointing an element in container
     class Iterator
+        # newly construct a clone iterator
+        # @return [EMSet::Iterator] self
+        def clone
+        end
         # increment the position
         # @return [EMSet::Iterator] self
         # @raise RangeError raised when advancing over the end
@@ -281,6 +289,10 @@ class EMap
     end
     # Iterator class, pointing an element in container
     class Iterator
+        # newly construct a clone iterator
+        # @return [EMap::Iterator] self
+        def clone
+        end
         # increment the position
         # @return [EMap::Iterator] self
         # @raise RangeError raised when advancing over the end
@@ -382,6 +394,10 @@ class EMMap
     end
     # Iterator class, pointing an element in container
     class Iterator
+        # newly construct a clone iterator
+        # @return [EMMap::Iterator] self
+        def clone
+        end
         # increment the position
         # @return [EMMap::Iterator] self
         # @raise RangeError raised when advancing over the end

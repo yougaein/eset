@@ -150,6 +150,10 @@ FOR_EMAP
     end
     # Iterator class, pointing an element in container
     class Iterator
+        # newly construct a clone iterator
+        # @return [#{c}::Iterator] newly cloned iterator
+        def clone
+        end
         # increment the position
         # @return [#{c}::Iterator] self
         # @raise RangeError raised when advancing over the end

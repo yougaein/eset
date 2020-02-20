@@ -2,7 +2,7 @@ require_relative 'lib/eset/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "YkESet"
-  spec.version       = YkESet::VERSION
+  spec.version       = ESet::VERSION
   spec.authors       = ["yougaein"]
   spec.email         = ["github@you.dix.asia"]
 

@@ -63,7 +63,7 @@ struct ESetWrap{
 
 
 	static void eMSet_free(EMSet* p){
-//		cout << "free:" << p << endl;
+		//cout << "free:" << p << endl;
 		p->~EMSet();
 		ruby_xfree(p);
 	}
@@ -79,16 +79,15 @@ struct ESetWrap{
 	}
 
 	static void eMSet_mark(EMSet* p){
-		for(iterator it = p->begin() ; it != p->end() ; ++it){
-			if(&*it != NULL){
-				eMSet_rb_gc_mark(*it);
-			}
-			
-		}
+		//cout << "mark_set_iterators:" << p << endl;
+		for(iterator it = p->begin() ; it != p->end() ; ++it)
+			eMSet_rb_gc_mark(*it);
 		rb_gc_mark(p->_M_t._M_impl._M_key_compare.block);
+		//cout << "marked_set_iterators:" << p << endl;
 	}
 
 	static void eMSetIt_free(iterator* p){
+		//cout << "free:" << p << endl;
 		p->iterator::~iterator();
 		ruby_xfree(p);
 	}
@@ -96,11 +95,17 @@ struct ESetWrap{
 
 	static void eMSetIt_mark(iterator* p){
 		if((*p)._M_node){
-			eMSet_rb_gc_mark(**p);
+			EMSet* q = ((EMSet*)p->_M_node->_TZ_tree);
+			if(q && q->end() != *p){
+				eMSet_rb_gc_mark(**p);
+				//cout << (**p).first << endl;
+				//cout << (**p).second << endl;
+			}
 			VALUE m = ((EMSet*)p->_M_node->_TZ_tree)->_M_t.memo;
 			if(m){
-				//cout << "mark:" << (EMSet*)p->_M_node->_TZ_tree << endl;
-				/*rb_gc_mark(m); why?*/
+		//		cout << "mark:" << (EMSet*)p->_M_node->_TZ_tree << endl;
+				//rb_gc_mark(m); //why?
+		//		cout << "marked:" << (EMSet*)p->_M_node->_TZ_tree << endl;
 			}
 		}
 	}
@@ -126,12 +131,14 @@ struct ESetWrap{
 	static VALUE eMSet_alloc(VALUE klass){
 		void* p = ruby_xmalloc(sizeof(EMSet));
 //		std::cout << "alloc:" << p << endl;
+		new(p) EMSet(ValueCompareBy(Qnil));
 		return Data_Wrap_Struct(klass, eMSet_mark, eMSet_free, p);
 	}
 
 
 	static VALUE eMSetIt_alloc(VALUE klass){
 		void* p = ruby_xmalloc(sizeof(iterator));
+		new(p) iterator();
 		return Data_Wrap_Struct(klass, eMSetIt_mark, eMSetIt_free, p);
 	}
 
@@ -140,6 +147,7 @@ struct ESetWrap{
 		EMSet* p = eMSet(self);
 		VALUE block;
 		rb_scan_args(argc, argv, "0&", &block);
+		p->~EMSet();
 		new(p) EMSet(ValueCompareBy(block));
 		p->_M_t.memo = self;
 		return Qnil;
@@ -148,6 +156,7 @@ struct ESetWrap{
 
 	static VALUE eMSetIt_init(VALUE self) {
 		iterator* p = eMSetIt(self);
+		p->~iterator();
 		new(p) iterator();
 		return Qnil;
 	}
@@ -253,8 +262,7 @@ struct ESetWrap{
 	inline static VALUE insertRet(T r){
 		VALUE itv = eMSetIt_alloc(cESetIt);
 		iterator* it = eMSetIt(itv);
-		new(it) iterator();
-		*it = getIterator(r);
+		new(it) iterator(getIterator(r));
 		return toValue(r, itv);
 	}
 
@@ -342,6 +350,7 @@ struct ESetWrap{
 
 
 	static VALUE eMSet_for_each(VALUE self, VALUE b, VALUE e) {
+		VALUE tov;
 		if(!rb_block_given_p()){
 			rb_raise(rb_eArgError, "Block missing");
 			return Qnil;
@@ -365,6 +374,7 @@ struct ESetWrap{
 				rb_raise(rb_eRangeError, "Dereferencing the end iterator");
 				return Qnil;
 			}
+			tov = toValue(*it);
 			res = rb_yield(toValue(*it));
 		}
 		return res;
@@ -479,7 +489,7 @@ struct ESetWrapMap_ : ESetWrap<E>{
 };
 
 template <typename EMSet>
-struct ESetWrapMap : ESetWrapMap_<EMTMap>{
+struct ESetWrapMap : ESetWrapMap_<EMSet>{
 };
 
 template <>

@@ -87,7 +87,7 @@ CFLAGS   = $(CCDLFLAGS) $(cflags) $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
 CPPFLAGS =  -I/usr/local/share/rbenv/versions/2.7.0-dev/include  $(DEFS) $(cppflags)
-CXXFLAGS = $(CCDLFLAGS) -g -O2 -O3 -std=c++1y  $(ARCH_FLAG)
+CXXFLAGS = $(CCDLFLAGS) -g -O2 -O0 -g -std=c++1y  $(ARCH_FLAG)
 ldflags  = -L. -L/usr/local/share/rbenv/versions/2.7.0-dev/lib  -fstack-protector-strong -rdynamic -Wl,-export-dynamic
 dldflags = -L/usr/local/share/rbenv/versions/2.7.0-dev/lib  -Wl,--compress-debug-sections=zlib 
 ARCH_FLAG = 

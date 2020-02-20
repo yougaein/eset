@@ -104,7 +104,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     void* _TZ_tree;
     void (*_TZ_destroyer)(_Rb_tree_node_base*);
     
-    _Rb_tree_node_base() : _TZ_refCount(0), _TZ_destroyer(0) { }
+    _Rb_tree_node_base() : _TZ_refCount(0), _TZ_destroyer(0), _M_parent(0), _M_left(this), _M_right(this) { }
     ~_Rb_tree_node_base(){
     	_M_left = this;
     	_M_right = this;
@@ -224,22 +224,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       reference
       operator*() const
       {
-    	  if(_M_node->_M_parent){
     		  return static_cast<_Link_type>(_M_node)->_M_value_field;
-    	  }else{
-    		  return *(pointer)0;
-    	  }
       }
 
       pointer
       operator->() const
       {
-    	  if(_M_node->_M_parent){
     		  return std::__addressof(static_cast<_Link_type>
     		  	  (_M_node)->_M_value_field);
-	  	  }else{
-		  	  return (pointer)0;
-	  	  }
       }
 
       _Self&
@@ -348,22 +340,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       reference
       operator*() const
       {
-   	  if(_M_node->_M_parent){
     		  return static_cast<_Link_type>(_M_node)->_M_value_field;
-    	  }else{
-    		  return *(pointer)0;
-    	  }
       }
 
       pointer
       operator->() const
       {
-    	  if(_M_node->_M_parent){
     		  return std::__addressof(static_cast<_Link_type>
 				(_M_node)->_M_value_field);
-    	  }else{
-    		  return (pointer)0;
-    	  }
       }
 
       _Self&

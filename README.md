@@ -7,7 +7,7 @@ Set/Map with external iterator
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'ESet'
+gem 'YkESet'
 ```
 
 And then execute:

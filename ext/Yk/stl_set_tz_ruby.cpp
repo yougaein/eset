@@ -145,11 +145,15 @@ struct ESetWrap{
 	}
 
 
-	static VALUE eMSetIt_init(VALUE self) {
-		iterator* p = eMSetIt(self);
-		p->~iterator();
-		new(p) iterator();
-		return Qnil;
+	static VALUE eMSetIt_assign(VALUE self, VALUE arg) {
+		iterator* a = eMSetIt(self);
+		if(!rb_obj_is_instance_of(arg, cESetIt)){
+			rb_raise(rb_eArgError, "Right operand is not compatible type");
+			return Qnil;
+		}
+		iterator* b = eMSetIt(arg);
+		*a = *b;
+		return self;
 	}
 
 
@@ -423,6 +427,7 @@ struct ESetWrap{
 		rb_define_method(cESetIt, "dec", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSetIt_dec), 0);
 		rb_define_method(cESetIt, "==", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSetIt_eq), 1);
 		rb_define_method(cESetIt, "!=", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSetIt_neq), 1);
+		rb_define_method(cESetIt, "assign", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSetIt_assign), 1);
 
 		rb_define_singleton_method(cESet, "find", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_find), -1);
 		rb_define_method(cESet, "erase", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_erase), 2);

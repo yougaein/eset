@@ -213,8 +213,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       _Rb_tree_iterator<_Tp>& operator=(const _Rb_tree_iterator<_Tp>& arg){
     	 if(_M_node != arg._M_node){
-    		if(_M_node)
+    		if(_M_node){
     			_M_node->_TZ_refCount -= 1;
+          if(_M_node->_TZ_refCount == 0 && _M_node->_TZ_destroyer){
+            _M_node->_TZ_destroyer((_Rb_tree_node_base*)_M_node);
+          }
+        }
     		_M_node = arg._M_node;
         if(_M_node)
     		_M_node->_TZ_refCount += 1;
@@ -324,8 +328,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       _Rb_tree_const_iterator<_Tp>& operator=(const _Rb_tree_const_iterator<_Tp>& arg){
     	 if(_M_node != arg._M_node){
-    		if(_M_node)
+    		if(_M_node){
     			((_Rb_tree_node_base*)_M_node)->_TZ_refCount -= 1;
+          if(_M_node->_TZ_refCount == 0 && _M_node->_TZ_destroyer){
+            _M_node->_TZ_destroyer((_Rb_tree_node_base*)_M_node);
+          }
+        }
     		_M_node = arg._M_node;
     		if(_M_node)
     		  ((_Rb_tree_node_base*)_M_node)->_TZ_refCount += 1;

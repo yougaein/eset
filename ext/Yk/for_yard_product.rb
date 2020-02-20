@@ -78,6 +78,11 @@ class ESet
         # @raise RangeError raised when rewinding over the beginning
         def dec
         end
+        # assign the positions of argument
+        # @return [ESet::Iterator] self
+        # @raise ArgumentError raised in case right operand is not compatible
+        def assign arg
+        end
         # compare for equivalence of positions
         # @return true or false
         # @raise ArgumentError raised in case right operand is not compatible
@@ -171,6 +176,11 @@ class EMSet
         # @return [EMSet::Iterator] self
         # @raise RangeError raised when rewinding over the beginning
         def dec
+        end
+        # assign the positions of argument
+        # @return [EMSet::Iterator] self
+        # @raise ArgumentError raised in case right operand is not compatible
+        def assign arg
         end
         # compare for equivalence of positions
         # @return true or false
@@ -281,6 +291,11 @@ class EMap
         # @raise RangeError raised when rewinding over the beginning
         def dec
         end
+        # assign the positions of argument
+        # @return [EMap::Iterator] self
+        # @raise ArgumentError raised in case right operand is not compatible
+        def assign arg
+        end
         # compare for equivalence of positions
         # @return true or false
         # @raise ArgumentError raised in case right operand is not compatible
@@ -376,6 +391,11 @@ class EMMap
         # @return [EMMap::Iterator] self
         # @raise RangeError raised when rewinding over the beginning
         def dec
+        end
+        # assign the positions of argument
+        # @return [EMMap::Iterator] self
+        # @raise ArgumentError raised in case right operand is not compatible
+        def assign arg
         end
         # compare for equivalence of positions
         # @return true or false

@@ -160,6 +160,11 @@ FOR_EMAP
         # @raise RangeError raised when rewinding over the beginning
         def dec
         end
+        # assign the positions of argument
+        # @return [#{c}::Iterator] self
+        # @raise ArgumentError raised in case right operand is not compatible
+        def assign arg
+        end
         # compare for equivalence of positions
         # @return true or false
         # @raise ArgumentError raised in case right operand is not compatible

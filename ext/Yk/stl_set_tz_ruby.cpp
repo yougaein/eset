@@ -63,7 +63,6 @@ struct ESetWrap{
 
 
 	static void eMSet_free(EMSet* p){
-		//cout << "free:" << p << endl;
 		p->~EMSet();
 		ruby_xfree(p);
 	}
@@ -79,15 +78,12 @@ struct ESetWrap{
 	}
 
 	static void eMSet_mark(EMSet* p){
-		//cout << "mark_set_iterators:" << p << endl;
 		for(iterator it = p->begin() ; it != p->end() ; ++it)
 			eMSet_rb_gc_mark(*it);
 		rb_gc_mark(p->_M_t._M_impl._M_key_compare.block);
-		//cout << "marked_set_iterators:" << p << endl;
 	}
 
 	static void eMSetIt_free(iterator* p){
-		//cout << "free:" << p << endl;
 		p->iterator::~iterator();
 		ruby_xfree(p);
 	}
@@ -98,14 +94,10 @@ struct ESetWrap{
 			EMSet* q = ((EMSet*)p->_M_node->_TZ_tree);
 			if(q && q->end() != *p){
 				eMSet_rb_gc_mark(**p);
-				//cout << (**p).first << endl;
-				//cout << (**p).second << endl;
 			}
-			VALUE m = ((EMSet*)p->_M_node->_TZ_tree)->_M_t.memo;
+			VALUE m = q->_M_t.memo;
 			if(m){
-		//		cout << "mark:" << (EMSet*)p->_M_node->_TZ_tree << endl;
-				//rb_gc_mark(m); //why?
-		//		cout << "marked:" << (EMSet*)p->_M_node->_TZ_tree << endl;
+				rb_gc_mark(m); //why?
 			}
 		}
 	}
@@ -130,7 +122,6 @@ struct ESetWrap{
 
 	static VALUE eMSet_alloc(VALUE klass){
 		void* p = ruby_xmalloc(sizeof(EMSet));
-//		std::cout << "alloc:" << p << endl;
 		new(p) EMSet(ValueCompareBy(Qnil));
 		return Data_Wrap_Struct(klass, eMSet_mark, eMSet_free, p);
 	}

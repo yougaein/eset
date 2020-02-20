@@ -67,6 +67,7 @@
 #include <bits/cpp_type_traits.h>
 #include <bits/alloc_traits.h>
 #include <iostream>
+#include <ruby.h>
 
 namespace tz _GLIBCXX_VISIBILITY(default)
 {
@@ -556,7 +557,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	};
     public:
       _Rb_tree_impl<_Compare> _M_impl;
-      unsigned int memo;
+      VALUE memo;
 
     protected:
       _Base_ptr&

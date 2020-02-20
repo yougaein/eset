@@ -71,7 +71,7 @@ def main
 		print toOut + "\n"
 		it.inc
 	end
-	EMSet.for_each s.begin, s.end do |o|
+	ESet.for_each s.begin, s.end do |o|
 		p [o.f]
 	end
 

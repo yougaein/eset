@@ -1,13 +1,13 @@
 require_relative 'lib/eset/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "ESet"
-  spec.version       = ESet::VERSION
+  spec.name          = "YkESet"
+  spec.version       = YkESet::VERSION
   spec.authors       = ["yougaein"]
   spec.email         = ["github@you.dix.asia"]
 
-  spec.summary       = %q{Set/Map with external iterator}
-  spec.description   = %q{Set/Map with external iterator}
+  spec.summary       = %q{Set/Map with external iterator, formerly ESet}
+  spec.description   = %q{Set/Map with external iterator, formerly ESet}
   spec.homepage      = "https://github.com/yougaein/eset"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
   spec.extensions    = %w[ext/Yk/extconf.rb]

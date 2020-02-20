@@ -19,7 +19,7 @@ Or install it yourself as:
     $ gem install ESet
 
 ## Usage  
-    
+
     require 'Yk/ESet'
     include Yk
 
@@ -30,7 +30,6 @@ Or install it yourself as:
 	    end  
     end  
 
-    s = ESet.new  
     s = ESet.new do |o|  
 	    o.f  
     end  

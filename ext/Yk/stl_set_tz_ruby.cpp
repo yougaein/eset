@@ -262,6 +262,15 @@ struct ESetWrap{
 	}
 
 
+	static VALUE eMSetIt_clone(VALUE self) {
+		iterator* it = eMSetIt(self);
+		VALUE itv = eMSetIt_alloc(cESetIt);
+		iterator* rt = eMSetIt(itv);
+		new(rt) iterator(*it);
+		return itv;
+	}
+
+
 	static VALUE eMSetIt_inc(VALUE self) {
 		iterator* it = eMSetIt(self);
 		if(*it == ((EMSet*)it->_M_node->_TZ_tree)->end()){
@@ -425,6 +434,7 @@ struct ESetWrap{
 
 		rb_define_method(cESetIt, "inc", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSetIt_inc), 0);
 		rb_define_method(cESetIt, "dec", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSetIt_dec), 0);
+		rb_define_method(cESetIt, "clone", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSetIt_clone), 0);
 		rb_define_method(cESetIt, "==", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSetIt_eq), 1);
 		rb_define_method(cESetIt, "!=", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSetIt_neq), 1);
 		rb_define_method(cESetIt, "assign", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSetIt_assign), 1);

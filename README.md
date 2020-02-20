@@ -18,8 +18,12 @@ Or install it yourself as:
 
     $ gem install ESet
 
-## Usage
+## Usage  
 
+`
+require 'Yk/ESet'  
+include Yk  
+  
 class Foo  
 	attr :f  
 	def initialize f  
@@ -46,8 +50,9 @@ while it != s.end
 	p it.item  
 	it.inc  
 end  
-  
+ 
 See [Document page](https://yougaein.github.io/eset/index.html)  
+`
   
 ## Development
 

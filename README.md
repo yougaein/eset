@@ -50,10 +50,10 @@ Or install it yourself as:
     end
     
     jt = it
-    it.inc
+    it.dec
     p it == jt #true
     jt = it.clone
-    jt.inc
+    jt.dec
     p it != jt #true
 
 

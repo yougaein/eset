@@ -132,22 +132,22 @@ FOR_EMAP
     #  @raise RangeError raised when erasing end iterator
     def erase *args
     end
-    # @overload find(v)
-    #  Searches the container for an element with an object equivalent to the argument.
-    #  @param v object
-    #  @return [#{c}::Iterator] iterator pointing the element with equivalent object.
-    # @overload find(first, last, obj = nil)
-    #  Searches the container for an element with an object equivalent to the third argument and/or validated with the provided block in a range of elements ([first,last)), 'obj' and returns an iterator to it if found, otherwise it returns an iterator to .
-    #  @param [#{c}::Iterator] first first iterator.
-    #  @param [#{c}::Iterator] last last iterator.
-    #  @param obj Object to search equivalency.
-    #  @yieldparam [Object] obj object argument pointed by an element passed for validation with the block
-    #  @yieldreturn [Object] validation result from the block
-    #  @return [#{c}::Iterator] iterator pointing the element with equivalent object.
-    #  @raise ArgumentError raised when an argument is not a compatible iterator.
-    #  @raise ArgumentError raised when first and last iterators are not from the same container.
-    #  @raise ArgumentError raised when neither parameter, obj nor block is provided.
-    #  @raise RangeError raised when dereferencing end iterator
+    # Searches the container for an element with an object equivalent to the argument.
+    # @param [Object] arg to search equivalency.
+    # @return [#{c}::Iterator] iterator pointing the element with equivalent object.
+    def find arg
+    end
+    # Searches the container for an element with an object equivalent to the third argument and/or validated with the provided block in a range of elements ([first,last)), 'obj' and returns an iterator to it if found, otherwise it returns an iterator to .
+    # @param [#{c}::Iterator] first first iterator.
+    # @param [#{c}::Iterator] last last iterator.
+    # @param [Object] obj to search equivalency.
+    # @yieldparam [Object] obj object argument pointed by an element passed for validation with the block
+    # @yieldreturn [Object] validation result from the block
+    # @return [#{c}::Iterator] iterator pointing the element with equivalent object.
+    # @raise ArgumentError raised when an argument is not a compatible iterator.
+    # @raise ArgumentError raised when first and last iterators are not from the same container.
+    # @raise ArgumentError raised when neither parameter, obj nor block is provided.
+    # @raise RangeError raised when dereferencing end iterator
     def #{c}.find first, last, obj = nil
     end
     # Applies given block to each of the elements in the range [first,last).

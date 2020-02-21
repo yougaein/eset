@@ -49,6 +49,8 @@ def main
 	p bi
 	p s.size
 	toErase = bi[0]
+	found = ESet.find(toErase.item)
+	p found.item
 	ESet.for_each s.begin, s.end do |o|
 		p [o]
 	end

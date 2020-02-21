@@ -7,7 +7,7 @@ if File.exists? './ESet.so'
 else
 	require 'Yk/ESet'
 end
-#require 'tz/debug2'
+#require 'tz/debug2' rescue nil
 
 include Yk
 
@@ -47,6 +47,24 @@ def main
 	bi = s.insert Item.new(r)
 	p ai
 	p bi
+	p s.size
+	toErase = bi[0]
+	ESet.for_each s.begin, s.end do |o|
+		p [o]
+	end
+
+	s.erase toErase
+	p s.size
+	p toErase.item
+	toErase.inc
+	p toErase.item
+	toErase.dec
+	p toErase.item
+	p s.size
+	ESet.for_each s.begin, s.end do |o|
+		p [o]
+	end
+
 	p ai[0] == bi[0]
 	p s.insert Item.new(rand)
 	p ai
@@ -71,6 +89,7 @@ def main
 		print toOut + "\n"
 		it.inc
 	end
+	p s.size
 	ESet.for_each s.begin, s.end do |o|
 		p [o.f]
 	end

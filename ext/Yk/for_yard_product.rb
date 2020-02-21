@@ -36,26 +36,36 @@ class ESet
     #  @return [Array] An array, with its first member set to an iterator pointing to either the newly inserted element or to the equivalent element already in the set. The second member in the array is set to true if a new element was inserted or false if an equivalent element already existed.
     def insert *args
     end
-    # Removes from the set container a range of elements ([first,last)).
-    # Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
-    # @param [ESet::Iterator] first first iterator.
-    # @param [ESet::Iterator] last last iterator.
-    # @raise ArgumentError raised when an argument is not a compatible iterator.
-    # @raise ArgumentError raised when first and last iterators are not from the same container.
-    # @raise RangeError raised when erasing end iterator
-    def erase first, last
+    # @overload erase(position)
+    #  Removes an element
+    #  @param [ESet::Iterator] position
+    #  @raise ArgumentError raised when an argument is not a compatible iterator.
+    # @overload erase(frist, last)
+    #  Removes a range of elements ([first,last)) from the container.
+    #  Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
+    #  @param [ESet::Iterator] first first iterator.
+    #  @param [ESet::Iterator] last last iterator.
+    #  @raise ArgumentError raised when an argument is not a compatible iterator.
+    #  @raise ArgumentError raised when first and last iterators are not from the same container.
+    #  @raise RangeError raised when erasing end iterator
+    def erase *args
     end
-    # Searches the container for an element with an object equivalent to the third argument and/or validated with the provided block in a range of elements ([first,last)), 'obj' and returns an iterator to it if found, otherwise it returns an iterator to .
-    # @param [ESet::Iterator] first first iterator.
-    # @param [ESet::Iterator] last last iterator.
-    # @param obj Object to search equivalency.
-    # @yieldparam [Object] obj object argument pointed by an element passed for validation with the block
-    # @yieldreturn [Object] validation result from the block
-    # @return [ESet::Iterator] iterator pointing the element with equivalent object.
-    # @raise ArgumentError raised when an argument is not a compatible iterator.
-    # @raise ArgumentError raised when first and last iterators are not from the same container.
-    # @raise ArgumentError raised when neither parameter, obj nor block is provided.
-    # @raise RangeError raised when dereferencing end iterator
+    # @overload find(v)
+    #  Searches the container for an element with an object equivalent to the argument.
+    #  @param v object
+    #  @return [ESet::Iterator] iterator pointing the element with equivalent object.
+    # @overload find(first, last, obj = nil)
+    #  Searches the container for an element with an object equivalent to the third argument and/or validated with the provided block in a range of elements ([first,last)), 'obj' and returns an iterator to it if found, otherwise it returns an iterator to .
+    #  @param [ESet::Iterator] first first iterator.
+    #  @param [ESet::Iterator] last last iterator.
+    #  @param obj Object to search equivalency.
+    #  @yieldparam [Object] obj object argument pointed by an element passed for validation with the block
+    #  @yieldreturn [Object] validation result from the block
+    #  @return [ESet::Iterator] iterator pointing the element with equivalent object.
+    #  @raise ArgumentError raised when an argument is not a compatible iterator.
+    #  @raise ArgumentError raised when first and last iterators are not from the same container.
+    #  @raise ArgumentError raised when neither parameter, obj nor block is provided.
+    #  @raise RangeError raised when dereferencing end iterator
     def ESet.find first, last, obj = nil
     end
     # Applies given block to each of the elements in the range [first,last).
@@ -69,7 +79,7 @@ class ESet
     # Iterator class, pointing an element in container
     class Iterator
         # newly construct a clone iterator
-        # @return [ESet::Iterator] self
+        # @return [ESet::Iterator] newly cloned iterator
         def clone
         end
         # increment the position
@@ -139,26 +149,36 @@ class EMSet
     #  @return [EMSet::Iterator] An iterator pointing to either the newly inserted element.
     def insert *args
     end
-    # Removes from the set container a range of elements ([first,last)).
-    # Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
-    # @param [EMSet::Iterator] first first iterator.
-    # @param [EMSet::Iterator] last last iterator.
-    # @raise ArgumentError raised when an argument is not a compatible iterator.
-    # @raise ArgumentError raised when first and last iterators are not from the same container.
-    # @raise RangeError raised when erasing end iterator
-    def erase first, last
+    # @overload erase(position)
+    #  Removes an element
+    #  @param [EMSet::Iterator] position
+    #  @raise ArgumentError raised when an argument is not a compatible iterator.
+    # @overload erase(frist, last)
+    #  Removes a range of elements ([first,last)) from the container.
+    #  Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
+    #  @param [EMSet::Iterator] first first iterator.
+    #  @param [EMSet::Iterator] last last iterator.
+    #  @raise ArgumentError raised when an argument is not a compatible iterator.
+    #  @raise ArgumentError raised when first and last iterators are not from the same container.
+    #  @raise RangeError raised when erasing end iterator
+    def erase *args
     end
-    # Searches the container for an element with an object equivalent to the third argument and/or validated with the provided block in a range of elements ([first,last)), 'obj' and returns an iterator to it if found, otherwise it returns an iterator to .
-    # @param [EMSet::Iterator] first first iterator.
-    # @param [EMSet::Iterator] last last iterator.
-    # @param obj Object to search equivalency.
-    # @yieldparam [Object] obj object argument pointed by an element passed for validation with the block
-    # @yieldreturn [Object] validation result from the block
-    # @return [EMSet::Iterator] iterator pointing the element with equivalent object.
-    # @raise ArgumentError raised when an argument is not a compatible iterator.
-    # @raise ArgumentError raised when first and last iterators are not from the same container.
-    # @raise ArgumentError raised when neither parameter, obj nor block is provided.
-    # @raise RangeError raised when dereferencing end iterator
+    # @overload find(v)
+    #  Searches the container for an element with an object equivalent to the argument.
+    #  @param v object
+    #  @return [EMSet::Iterator] iterator pointing the element with equivalent object.
+    # @overload find(first, last, obj = nil)
+    #  Searches the container for an element with an object equivalent to the third argument and/or validated with the provided block in a range of elements ([first,last)), 'obj' and returns an iterator to it if found, otherwise it returns an iterator to .
+    #  @param [EMSet::Iterator] first first iterator.
+    #  @param [EMSet::Iterator] last last iterator.
+    #  @param obj Object to search equivalency.
+    #  @yieldparam [Object] obj object argument pointed by an element passed for validation with the block
+    #  @yieldreturn [Object] validation result from the block
+    #  @return [EMSet::Iterator] iterator pointing the element with equivalent object.
+    #  @raise ArgumentError raised when an argument is not a compatible iterator.
+    #  @raise ArgumentError raised when first and last iterators are not from the same container.
+    #  @raise ArgumentError raised when neither parameter, obj nor block is provided.
+    #  @raise RangeError raised when dereferencing end iterator
     def EMSet.find first, last, obj = nil
     end
     # Applies given block to each of the elements in the range [first,last).
@@ -172,7 +192,7 @@ class EMSet
     # Iterator class, pointing an element in container
     class Iterator
         # newly construct a clone iterator
-        # @return [EMSet::Iterator] self
+        # @return [EMSet::Iterator] newly cloned iterator
         def clone
         end
         # increment the position
@@ -257,26 +277,36 @@ class EMap
     #  @return [EMap::Iterator] Iterator pointing at the element that was inserted or updated
     def insert_or_assign *args
     end
-    # Removes from the set container a range of elements ([first,last)).
-    # Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
-    # @param [EMap::Iterator] first first iterator.
-    # @param [EMap::Iterator] last last iterator.
-    # @raise ArgumentError raised when an argument is not a compatible iterator.
-    # @raise ArgumentError raised when first and last iterators are not from the same container.
-    # @raise RangeError raised when erasing end iterator
-    def erase first, last
+    # @overload erase(position)
+    #  Removes an element
+    #  @param [EMap::Iterator] position
+    #  @raise ArgumentError raised when an argument is not a compatible iterator.
+    # @overload erase(frist, last)
+    #  Removes a range of elements ([first,last)) from the container.
+    #  Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
+    #  @param [EMap::Iterator] first first iterator.
+    #  @param [EMap::Iterator] last last iterator.
+    #  @raise ArgumentError raised when an argument is not a compatible iterator.
+    #  @raise ArgumentError raised when first and last iterators are not from the same container.
+    #  @raise RangeError raised when erasing end iterator
+    def erase *args
     end
-    # Searches the container for an element with an object equivalent to the third argument and/or validated with the provided block in a range of elements ([first,last)), 'obj' and returns an iterator to it if found, otherwise it returns an iterator to .
-    # @param [EMap::Iterator] first first iterator.
-    # @param [EMap::Iterator] last last iterator.
-    # @param obj Object to search equivalency.
-    # @yieldparam [Object] obj object argument pointed by an element passed for validation with the block
-    # @yieldreturn [Object] validation result from the block
-    # @return [EMap::Iterator] iterator pointing the element with equivalent object.
-    # @raise ArgumentError raised when an argument is not a compatible iterator.
-    # @raise ArgumentError raised when first and last iterators are not from the same container.
-    # @raise ArgumentError raised when neither parameter, obj nor block is provided.
-    # @raise RangeError raised when dereferencing end iterator
+    # @overload find(v)
+    #  Searches the container for an element with an object equivalent to the argument.
+    #  @param v object
+    #  @return [EMap::Iterator] iterator pointing the element with equivalent object.
+    # @overload find(first, last, obj = nil)
+    #  Searches the container for an element with an object equivalent to the third argument and/or validated with the provided block in a range of elements ([first,last)), 'obj' and returns an iterator to it if found, otherwise it returns an iterator to .
+    #  @param [EMap::Iterator] first first iterator.
+    #  @param [EMap::Iterator] last last iterator.
+    #  @param obj Object to search equivalency.
+    #  @yieldparam [Object] obj object argument pointed by an element passed for validation with the block
+    #  @yieldreturn [Object] validation result from the block
+    #  @return [EMap::Iterator] iterator pointing the element with equivalent object.
+    #  @raise ArgumentError raised when an argument is not a compatible iterator.
+    #  @raise ArgumentError raised when first and last iterators are not from the same container.
+    #  @raise ArgumentError raised when neither parameter, obj nor block is provided.
+    #  @raise RangeError raised when dereferencing end iterator
     def EMap.find first, last, obj = nil
     end
     # Applies given block to each of the elements in the range [first,last).
@@ -290,7 +320,7 @@ class EMap
     # Iterator class, pointing an element in container
     class Iterator
         # newly construct a clone iterator
-        # @return [EMap::Iterator] self
+        # @return [EMap::Iterator] newly cloned iterator
         def clone
         end
         # increment the position
@@ -362,26 +392,36 @@ class EMMap
     #  @return [EMMap::Iterator] An iterator pointing to either the newly inserted element.
     def insert *args
     end
-    # Removes from the set container a range of elements ([first,last)).
-    # Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
-    # @param [EMMap::Iterator] first first iterator.
-    # @param [EMMap::Iterator] last last iterator.
-    # @raise ArgumentError raised when an argument is not a compatible iterator.
-    # @raise ArgumentError raised when first and last iterators are not from the same container.
-    # @raise RangeError raised when erasing end iterator
-    def erase first, last
+    # @overload erase(position)
+    #  Removes an element
+    #  @param [EMMap::Iterator] position
+    #  @raise ArgumentError raised when an argument is not a compatible iterator.
+    # @overload erase(frist, last)
+    #  Removes a range of elements ([first,last)) from the container.
+    #  Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
+    #  @param [EMMap::Iterator] first first iterator.
+    #  @param [EMMap::Iterator] last last iterator.
+    #  @raise ArgumentError raised when an argument is not a compatible iterator.
+    #  @raise ArgumentError raised when first and last iterators are not from the same container.
+    #  @raise RangeError raised when erasing end iterator
+    def erase *args
     end
-    # Searches the container for an element with an object equivalent to the third argument and/or validated with the provided block in a range of elements ([first,last)), 'obj' and returns an iterator to it if found, otherwise it returns an iterator to .
-    # @param [EMMap::Iterator] first first iterator.
-    # @param [EMMap::Iterator] last last iterator.
-    # @param obj Object to search equivalency.
-    # @yieldparam [Object] obj object argument pointed by an element passed for validation with the block
-    # @yieldreturn [Object] validation result from the block
-    # @return [EMMap::Iterator] iterator pointing the element with equivalent object.
-    # @raise ArgumentError raised when an argument is not a compatible iterator.
-    # @raise ArgumentError raised when first and last iterators are not from the same container.
-    # @raise ArgumentError raised when neither parameter, obj nor block is provided.
-    # @raise RangeError raised when dereferencing end iterator
+    # @overload find(v)
+    #  Searches the container for an element with an object equivalent to the argument.
+    #  @param v object
+    #  @return [EMMap::Iterator] iterator pointing the element with equivalent object.
+    # @overload find(first, last, obj = nil)
+    #  Searches the container for an element with an object equivalent to the third argument and/or validated with the provided block in a range of elements ([first,last)), 'obj' and returns an iterator to it if found, otherwise it returns an iterator to .
+    #  @param [EMMap::Iterator] first first iterator.
+    #  @param [EMMap::Iterator] last last iterator.
+    #  @param obj Object to search equivalency.
+    #  @yieldparam [Object] obj object argument pointed by an element passed for validation with the block
+    #  @yieldreturn [Object] validation result from the block
+    #  @return [EMMap::Iterator] iterator pointing the element with equivalent object.
+    #  @raise ArgumentError raised when an argument is not a compatible iterator.
+    #  @raise ArgumentError raised when first and last iterators are not from the same container.
+    #  @raise ArgumentError raised when neither parameter, obj nor block is provided.
+    #  @raise RangeError raised when dereferencing end iterator
     def EMMap.find first, last, obj = nil
     end
     # Applies given block to each of the elements in the range [first,last).
@@ -395,7 +435,7 @@ class EMMap
     # Iterator class, pointing an element in container
     class Iterator
         # newly construct a clone iterator
-        # @return [EMMap::Iterator] self
+        # @return [EMMap::Iterator] newly cloned iterator
         def clone
         end
         # increment the position

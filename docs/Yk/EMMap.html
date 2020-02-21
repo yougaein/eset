@@ -138,7 +138,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#find-class_method" title="find (class method)">.<strong>find</strong>(first, last, obj = nil) {|obj| ... } &#x21d2; EMMap::Iterator </a>
+      <a href="#find-class_method" title="find (class method)">.<strong>find</strong>(first, last, obj = nil)  &#x21d2; Object </a>
     
 
     
@@ -152,9 +152,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Searches the container for an element with an object equivalent to the third argument and/or validated with the provided block in a range of elements ([first,last)), &#39;obj&#39; and returns an iterator to it if found, otherwise it returns an iterator to .</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -267,7 +265,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#erase-instance_method" title="#erase (instance method)">#<strong>erase</strong>(first, last)  &#x21d2; Object </a>
+      <a href="#erase-instance_method" title="#erase (instance method)">#<strong>erase</strong>(*args)  &#x21d2; Object </a>
     
 
     
@@ -281,9 +279,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Removes from the set container a range of elements ([first,last)).</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -478,11 +474,11 @@
       <pre class="lines">
 
 
-332
-333</pre>
+362
+363</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 332</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 362</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
 <span class='kw'>end</span></pre>
@@ -501,13 +497,86 @@
       <div class="method_details first">
   <h3 class="signature first" id="find-class_method">
   
-    .<strong>find</strong>(first, last, obj = nil) {|obj| ... } &#x21d2; <tt><span class='object_link'><a href="EMMap/Iterator.html" title="Yk::EMMap::Iterator (class)">EMMap::Iterator</a></span></tt> 
+    
+      <span class="overload">.<strong>find</strong>(v)  &#x21d2; <tt><span class='object_link'><a href="EMMap/Iterator.html" title="Yk::EMMap::Iterator (class)">EMMap::Iterator</a></span></tt> </span>
+    
+      <span class="overload">.<strong>find</strong>(first, last, obj = nil) {|obj| ... } &#x21d2; <tt><span class='object_link'><a href="EMMap/Iterator.html" title="Yk::EMMap::Iterator (class)">EMMap::Iterator</a></span></tt> </span>
+    
   
 
   
 
   
 </h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+  <p class="tag_title">Overloads:</p>
+  <ul class="overload">
+    
+      
+      <li class="overload_item">
+        <span class="signature">.<strong>find</strong>(v)  &#x21d2; <tt><span class='object_link'><a href="EMMap/Iterator.html" title="Yk::EMMap::Iterator (class)">EMMap::Iterator</a></span></tt> </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>Searches the container for an element with an object equivalent to the argument.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>v</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>object</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="EMMap/Iterator.html" title="Yk::EMMap::Iterator (class)">EMMap::Iterator</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>iterator pointing the element with equivalent object.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">.<strong>find</strong>(first, last, obj = nil) {|obj| ... } &#x21d2; <tt><span class='object_link'><a href="EMMap/Iterator.html" title="Yk::EMMap::Iterator (class)">EMMap::Iterator</a></span></tt> </span>
+        <div class="docstring">
   <div class="discussion">
     
 <p>Searches the container for an element with an object equivalent to the third argument and/or validated with the provided block in a range of elements ([first,last)), &#39;obj&#39; and returns an iterator to it if found, otherwise it returns an iterator to .</p>
@@ -688,17 +757,23 @@
   
 </ul>
 
+</div>
+      </li>
+    
+  </ul>
+
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-385
-386</pre>
+425
+426</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 385</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 425</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Yk::EMMap (class)">EMMap</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='id identifier rubyid_first'>first</span><span class='comma'>,</span> <span class='id identifier rubyid_last'>last</span><span class='comma'>,</span> <span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='kw'>nil</span>
 <span class='kw'>end</span></pre>
@@ -821,11 +896,11 @@
       <pre class="lines">
 
 
-393
-394</pre>
+433
+434</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 393</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 433</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Yk::EMMap (class)">EMMap</a></span></span><span class='period'>.</span><span class='id identifier rubyid_for_each'>for_each</span> <span class='id identifier rubyid_first'>first</span><span class='comma'>,</span> <span class='id identifier rubyid_last'>last</span>
 <span class='kw'>end</span></pre>
@@ -884,11 +959,11 @@
       <pre class="lines">
 
 
-335
-336</pre>
+365
+366</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 335</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 365</span>
 
 <span class='kw'>def</span> <span class='kw'>begin</span>
 <span class='kw'>end</span></pre>
@@ -923,11 +998,11 @@
       <pre class="lines">
 
 
-344
-345</pre>
+374
+375</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 344</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 374</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clear'>clear</span>
 <span class='kw'>end</span></pre>
@@ -980,11 +1055,11 @@
       <pre class="lines">
 
 
-338
-339</pre>
+368
+369</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 338</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 368</span>
 
 <span class='kw'>def</span> <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -996,7 +1071,11 @@
       <div class="method_details ">
   <h3 class="signature " id="erase-instance_method">
   
-    #<strong>erase</strong>(first, last)  &#x21d2; <tt>Object</tt> 
+    
+      <span class="overload">#<strong>erase</strong>(position)  &#x21d2; <tt>Object</tt> </span>
+    
+      <span class="overload">#<strong>erase</strong>(frist, last)  &#x21d2; <tt>Object</tt> </span>
+    
   
 
   
@@ -1005,7 +1084,71 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Removes from the set container a range of elements ([first,last)). Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <p class="tag_title">Overloads:</p>
+  <ul class="overload">
+    
+      
+      <li class="overload_item">
+        <span class="signature">#<strong>erase</strong>(position)  &#x21d2; <tt>Object</tt> </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>Removes an element</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>position</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="EMMap/Iterator.html" title="Yk::EMMap::Iterator (class)">EMMap::Iterator</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>ArgumentError raised when an argument is not a compatible iterator.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">#<strong>erase</strong>(frist, last)  &#x21d2; <tt>Object</tt> </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>Removes a range of elements ([first,last)) from the container. Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.</p>
 
 
   </div>
@@ -1095,19 +1238,25 @@
   
 </ul>
 
+</div>
+      </li>
+    
+  </ul>
+
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-372
-373</pre>
+407
+408</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 372</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 407</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_erase'>erase</span> <span class='id identifier rubyid_first'>first</span><span class='comma'>,</span> <span class='id identifier rubyid_last'>last</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_erase'>erase</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1305,11 +1454,11 @@
       <pre class="lines">
 
 
-363
-364</pre>
+393
+394</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 363</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 393</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_insert'>insert</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span>
 <span class='kw'>end</span></pre>
@@ -1362,11 +1511,11 @@
       <pre class="lines">
 
 
-350
-351</pre>
+380
+381</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 350</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 380</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lower_bound'>lower_bound</span> 
 <span class='kw'>end</span></pre>
@@ -1419,11 +1568,11 @@
       <pre class="lines">
 
 
-341
-342</pre>
+371
+372</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 341</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 371</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_size'>size</span>
 <span class='kw'>end</span></pre>
@@ -1476,11 +1625,11 @@
       <pre class="lines">
 
 
-347
-348</pre>
+377
+378</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 347</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 377</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_upper_bound'>upper_bound</span>
 <span class='kw'>end</span></pre>
@@ -1494,7 +1643,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Feb 20 23:18:20 2020 by
+  Generated on Fri Feb 21 22:30:57 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.24 (ruby-2.7.0).
 </div>

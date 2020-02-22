@@ -26,33 +26,47 @@ class ESet
     def lower_bound 
     end
     # @overload insert(position, obj)
-    #  Insert element with an object using a hint
+    #  Insert element with an object using a hint and return new iterator object
     #  @param [ESet::Iterator] position  Hint for the position where the element can be inserted.
     #  @param [Object] obj  Object to be pointed by the inserted elements.
     #  @return [ESet::Iterator] An iterator pointing to either the newly inserted element or to the element that already had its equivalent in the container.
     # @overload insert(obj)
-    #  Insert element with an object
+    #  Insert element and return new iterator object
     #  @param [Object] obj key object to be pointed by the inserted elements.
     #  @return [Array] An array, with its first member set to an iterator pointing to either the newly inserted element or to the equivalent element already in the set. The second member in the array is set to true if a new element was inserted or false if an equivalent element already existed.
     def insert *args
     end
+    # @overload add(position, obj)
+    #  Insert element with an object using a hint and return true if a new element was inserted or false if an equivalent element already existed. Do not return iterator object. More efficient if you do not need inserted position (removed by GC). 
+    #  @param [ESet::Iterator] position  Hint for the position where the element can be inserted.
+    #  @param [Object] obj  Object to be pointed by the inserted elements.
+    #  @return [True|False] true if a new element was inserted or false if an equivalent element already existed.
+    # @overload add(obj)
+    #  Insert element with an object and return true if a new element was inserted or false if an equivalent element already existed. Do not return iterator object. More efficient if you do not need inserted position (removed by GC). 
+    #  @param [Object] obj key object to be pointed by the inserted elements.
+    #  @return [True|False] true if a new element was inserted or false if an equivalent element already existed.
+    def add *args
+    end
     # @overload erase(position)
-    #  Removes an element
-    #  @param [ESet::Iterator] position
+    #  Erase an element from the container
+    #  @param [ESet::Iterator] position to erase
     #  @raise ArgumentError raised when an argument is not a compatible iterator.
+    #  @raise ArgumentError raised when using argument with erased position
     # @overload erase(frist, last)
-    #  Removes a range of elements ([first,last)) from the container.
+    #  Erase a range of elements ([first,last)) from the container.
     #  Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
     #  @param [ESet::Iterator] first first iterator.
     #  @param [ESet::Iterator] last last iterator.
     #  @raise ArgumentError raised when an argument is not a compatible iterator.
     #  @raise ArgumentError raised when first and last iterators are not from the same container.
     #  @raise RangeError raised when erasing end iterator
+    #  @raise ArgumentError raised when use argument with erased position
     def erase *args
     end
     # Searches the container for an element with an object equivalent to the argument.
     # @param [Object] arg to search equivalency.
     # @return [ESet::Iterator] iterator pointing the element with equivalent object.
+    # @raise ArgumentError raised when using argument(s) with erased position
     def find arg
     end
     # Searches the container for an element with an object equivalent to the third argument and/or validated with the provided block in a range of elements ([first,last)), 'obj' and returns an iterator to it if found, otherwise it returns an iterator to .
@@ -65,6 +79,7 @@ class ESet
     # @raise ArgumentError raised when an argument is not a compatible iterator.
     # @raise ArgumentError raised when first and last iterators are not from the same container.
     # @raise ArgumentError raised when neither parameter, obj nor block is provided.
+    # @raise ArgumentError raised when using argument(s) with erased position
     # @raise RangeError raised when dereferencing end iterator
     def ESet.find first, last, obj = nil
     end
@@ -74,6 +89,7 @@ class ESet
     # @yieldparam [Object] obj object in an element
     # @raise ArgumentError raised when an argument is not a compatible iterator.
     # @raise ArgumentError raised when first and last iterators are not from the same container.
+    # @raise ArgumentError raised when using argument(s) with erased position
     def ESet.for_each first, last
     end
     # Iterator class, pointing an element in container
@@ -85,12 +101,23 @@ class ESet
         # increment the position
         # @return [ESet::Iterator] self
         # @raise RangeError raised when advancing over the end
+        # @raise ArgumentError raised when incrementing erased position
         def inc
         end
         # decrement the position
         # @return [ESet::Iterator] self
         # @raise RangeError raised when rewinding over the beginning
+        # @raise ArgumentError raised when decrementing erased position
         def dec
+        end
+        # returns true if the iterator is already reached the end
+        # @return [True|False] true|false
+        # @raise ArgumentError raised when the pstion of the iterator is already erased
+        def isEnd?
+        end
+        # returns true if iterator position is already erased
+        # @return [True|False] true|false
+        def isErased?
         end
         # assign the positions of argument
         # @return [ESet::Iterator] self
@@ -139,33 +166,47 @@ class EMSet
     def lower_bound 
     end
     # @overload insert(position, obj)
-    #  Insert element with an object using a hint
+    #  Insert element with an object using a hint and return new iterator object
     #  @param [EMSet::Iterator] position  Hint for the position where the element can be inserted.
     #  @param [Object] obj  Object to be pointed by the inserted elements.
     #  @return [EMSet::Iterator] An iterator pointing to either the newly inserted element.
     # @overload insert(obj)
-    #  Insert element with an object
+    #  Insert element and return new iterator object
     #  @param [Object] obj key object to be pointed by the inserted elements.
     #  @return [EMSet::Iterator] An iterator pointing to either the newly inserted element.
     def insert *args
     end
+    # @overload add(position, obj)
+    #  Insert element with an object using a hint and return true if a new element was inserted or false if an equivalent element already existed. Do not return iterator object. More efficient if you do not need inserted position (removed by GC). 
+    #  @param [EMSet::Iterator] position  Hint for the position where the element can be inserted.
+    #  @param [Object] obj  Object to be pointed by the inserted elements.
+    #  @return [True] Always return true.
+    # @overload add(obj)
+    #  Insert element with an object and return true if a new element was inserted or false if an equivalent element already existed. Do not return iterator object. More efficient if you do not need inserted position (removed by GC). 
+    #  @param [Object] obj key object to be pointed by the inserted elements.
+    #  @return [True] Always return true.
+    def add *args
+    end
     # @overload erase(position)
-    #  Removes an element
-    #  @param [EMSet::Iterator] position
+    #  Erase an element from the container
+    #  @param [EMSet::Iterator] position to erase
     #  @raise ArgumentError raised when an argument is not a compatible iterator.
+    #  @raise ArgumentError raised when using argument with erased position
     # @overload erase(frist, last)
-    #  Removes a range of elements ([first,last)) from the container.
+    #  Erase a range of elements ([first,last)) from the container.
     #  Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
     #  @param [EMSet::Iterator] first first iterator.
     #  @param [EMSet::Iterator] last last iterator.
     #  @raise ArgumentError raised when an argument is not a compatible iterator.
     #  @raise ArgumentError raised when first and last iterators are not from the same container.
     #  @raise RangeError raised when erasing end iterator
+    #  @raise ArgumentError raised when use argument with erased position
     def erase *args
     end
     # Searches the container for an element with an object equivalent to the argument.
     # @param [Object] arg to search equivalency.
     # @return [EMSet::Iterator] iterator pointing the element with equivalent object.
+    # @raise ArgumentError raised when using argument(s) with erased position
     def find arg
     end
     # Searches the container for an element with an object equivalent to the third argument and/or validated with the provided block in a range of elements ([first,last)), 'obj' and returns an iterator to it if found, otherwise it returns an iterator to .
@@ -178,6 +219,7 @@ class EMSet
     # @raise ArgumentError raised when an argument is not a compatible iterator.
     # @raise ArgumentError raised when first and last iterators are not from the same container.
     # @raise ArgumentError raised when neither parameter, obj nor block is provided.
+    # @raise ArgumentError raised when using argument(s) with erased position
     # @raise RangeError raised when dereferencing end iterator
     def EMSet.find first, last, obj = nil
     end
@@ -187,6 +229,7 @@ class EMSet
     # @yieldparam [Object] obj object in an element
     # @raise ArgumentError raised when an argument is not a compatible iterator.
     # @raise ArgumentError raised when first and last iterators are not from the same container.
+    # @raise ArgumentError raised when using argument(s) with erased position
     def EMSet.for_each first, last
     end
     # Iterator class, pointing an element in container
@@ -198,12 +241,23 @@ class EMSet
         # increment the position
         # @return [EMSet::Iterator] self
         # @raise RangeError raised when advancing over the end
+        # @raise ArgumentError raised when incrementing erased position
         def inc
         end
         # decrement the position
         # @return [EMSet::Iterator] self
         # @raise RangeError raised when rewinding over the beginning
+        # @raise ArgumentError raised when decrementing erased position
         def dec
+        end
+        # returns true if the iterator is already reached the end
+        # @return [True|False] true|false
+        # @raise ArgumentError raised when the pstion of the iterator is already erased
+        def isEnd?
+        end
+        # returns true if iterator position is already erased
+        # @return [True|False] true|false
+        def isErased?
         end
         # assign the positions of argument
         # @return [EMSet::Iterator] self
@@ -252,17 +306,30 @@ class EMap
     def lower_bound 
     end
     # @overload insert(position, key, value)
-    #  Insert element with an object using a hint
+    #  Insert element with an object using a hint and return new iterator object
     #  @param [EMap::Iterator] position  Hint for the position where the element can be inserted.
     #  @param [Object] key key object to be pointed by the inserted elements.
     #  @param [Object] value value object to be pointed by the inserted elements.
     #  @return [EMap::Iterator] An iterator pointing to either the newly inserted element or to the element that already had its equivalent in the container.
     # @overload insert(key, value)
-    #  Insert element with an object
+    #  Insert element and return new iterator object
     #  @param [Object] key key object to be pointed by the inserted elements.
     #  @param [Object] value value object to be pointed by the inserted elements.
     #  @return [Array] An array, with its first member set to an iterator pointing to either the newly inserted element or to the equivalent element already in the set. The second member in the array is set to true if a new element was inserted or false if an equivalent element already existed.
     def insert *args
+    end
+    # @overload add(position, key, value)
+    #  Insert element with an object using a hint and return true if a new element was inserted or false if an equivalent element already existed. Do not return iterator object. More efficient if you do not need inserted position (removed by GC). 
+    #  @param [EMap::Iterator] position  Hint for the position where the element can be inserted.
+    #  @param [Object] key key object to be pointed by the inserted elements.
+    #  @param [Object] value value object to be pointed by the inserted elements.
+    #  @return [True|False] true if a new element was inserted or false if an equivalent element already existed.
+    # @overload add(key, value)
+    #  Insert element with an object and return true if a new element was inserted or false if an equivalent element already existed. Do not return iterator object. More efficient if you do not need inserted position (removed by GC). 
+    #  @param [Object] key key object to be pointed by the inserted elements.
+    #  @param [Object] value value object to be pointed by the inserted elements.
+    #  @return [True|False] true if a new element was inserted or false if an equivalent element already existed.
+    def add *args
     end
     # @overload insert_or_assign(k, v)
     #  If a key equivalent to 'k' already exists in the container, assigns 'v' to value corresponding to the key. If the key does not exist, inserts the new value as if by insert.
@@ -278,22 +345,25 @@ class EMap
     def insert_or_assign *args
     end
     # @overload erase(position)
-    #  Removes an element
-    #  @param [EMap::Iterator] position
+    #  Erase an element from the container
+    #  @param [EMap::Iterator] position to erase
     #  @raise ArgumentError raised when an argument is not a compatible iterator.
+    #  @raise ArgumentError raised when using argument with erased position
     # @overload erase(frist, last)
-    #  Removes a range of elements ([first,last)) from the container.
+    #  Erase a range of elements ([first,last)) from the container.
     #  Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
     #  @param [EMap::Iterator] first first iterator.
     #  @param [EMap::Iterator] last last iterator.
     #  @raise ArgumentError raised when an argument is not a compatible iterator.
     #  @raise ArgumentError raised when first and last iterators are not from the same container.
     #  @raise RangeError raised when erasing end iterator
+    #  @raise ArgumentError raised when use argument with erased position
     def erase *args
     end
     # Searches the container for an element with an object equivalent to the argument.
     # @param [Object] arg to search equivalency.
     # @return [EMap::Iterator] iterator pointing the element with equivalent object.
+    # @raise ArgumentError raised when using argument(s) with erased position
     def find arg
     end
     # Searches the container for an element with an object equivalent to the third argument and/or validated with the provided block in a range of elements ([first,last)), 'obj' and returns an iterator to it if found, otherwise it returns an iterator to .
@@ -306,6 +376,7 @@ class EMap
     # @raise ArgumentError raised when an argument is not a compatible iterator.
     # @raise ArgumentError raised when first and last iterators are not from the same container.
     # @raise ArgumentError raised when neither parameter, obj nor block is provided.
+    # @raise ArgumentError raised when using argument(s) with erased position
     # @raise RangeError raised when dereferencing end iterator
     def EMap.find first, last, obj = nil
     end
@@ -315,6 +386,7 @@ class EMap
     # @yieldparam [Object] obj object in an element
     # @raise ArgumentError raised when an argument is not a compatible iterator.
     # @raise ArgumentError raised when first and last iterators are not from the same container.
+    # @raise ArgumentError raised when using argument(s) with erased position
     def EMap.for_each first, last
     end
     # Iterator class, pointing an element in container
@@ -326,12 +398,23 @@ class EMap
         # increment the position
         # @return [EMap::Iterator] self
         # @raise RangeError raised when advancing over the end
+        # @raise ArgumentError raised when incrementing erased position
         def inc
         end
         # decrement the position
         # @return [EMap::Iterator] self
         # @raise RangeError raised when rewinding over the beginning
+        # @raise ArgumentError raised when decrementing erased position
         def dec
+        end
+        # returns true if the iterator is already reached the end
+        # @return [True|False] true|false
+        # @raise ArgumentError raised when the pstion of the iterator is already erased
+        def isEnd?
+        end
+        # returns true if iterator position is already erased
+        # @return [True|False] true|false
+        def isErased?
         end
         # assign the positions of argument
         # @return [EMap::Iterator] self
@@ -380,35 +463,51 @@ class EMMap
     def lower_bound 
     end
     # @overload insert(position, key, value)
-    #  Insert element with an object using a hint
+    #  Insert element with an object using a hint and return new iterator object
     #  @param [EMMap::Iterator] position  Hint for the position where the element can be inserted.
     #  @param [Object] key key object to be pointed by the inserted elements.
     #  @param [Object] value value object to be pointed by the inserted elements.
     #  @return [EMMap::Iterator] An iterator pointing to either the newly inserted element.
     # @overload insert(key, value)
-    #  Insert element with an object
+    #  Insert element and return new iterator object
     #  @param [Object] key key object to be pointed by the inserted elements.
     #  @param [Object] value value object to be pointed by the inserted elements.
     #  @return [EMMap::Iterator] An iterator pointing to either the newly inserted element.
     def insert *args
     end
+    # @overload add(position, key, value)
+    #  Insert element with an object using a hint and return true if a new element was inserted or false if an equivalent element already existed. Do not return iterator object. More efficient if you do not need inserted position (removed by GC). 
+    #  @param [EMMap::Iterator] position  Hint for the position where the element can be inserted.
+    #  @param [Object] key key object to be pointed by the inserted elements.
+    #  @param [Object] value value object to be pointed by the inserted elements.
+    #  @return [True] Always return true.
+    # @overload add(key, value)
+    #  Insert element with an object and return true if a new element was inserted or false if an equivalent element already existed. Do not return iterator object. More efficient if you do not need inserted position (removed by GC). 
+    #  @param [Object] key key object to be pointed by the inserted elements.
+    #  @param [Object] value value object to be pointed by the inserted elements.
+    #  @return [True] Always return true.
+    def add *args
+    end
     # @overload erase(position)
-    #  Removes an element
-    #  @param [EMMap::Iterator] position
+    #  Erase an element from the container
+    #  @param [EMMap::Iterator] position to erase
     #  @raise ArgumentError raised when an argument is not a compatible iterator.
+    #  @raise ArgumentError raised when using argument with erased position
     # @overload erase(frist, last)
-    #  Removes a range of elements ([first,last)) from the container.
+    #  Erase a range of elements ([first,last)) from the container.
     #  Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
     #  @param [EMMap::Iterator] first first iterator.
     #  @param [EMMap::Iterator] last last iterator.
     #  @raise ArgumentError raised when an argument is not a compatible iterator.
     #  @raise ArgumentError raised when first and last iterators are not from the same container.
     #  @raise RangeError raised when erasing end iterator
+    #  @raise ArgumentError raised when use argument with erased position
     def erase *args
     end
     # Searches the container for an element with an object equivalent to the argument.
     # @param [Object] arg to search equivalency.
     # @return [EMMap::Iterator] iterator pointing the element with equivalent object.
+    # @raise ArgumentError raised when using argument(s) with erased position
     def find arg
     end
     # Searches the container for an element with an object equivalent to the third argument and/or validated with the provided block in a range of elements ([first,last)), 'obj' and returns an iterator to it if found, otherwise it returns an iterator to .
@@ -421,6 +520,7 @@ class EMMap
     # @raise ArgumentError raised when an argument is not a compatible iterator.
     # @raise ArgumentError raised when first and last iterators are not from the same container.
     # @raise ArgumentError raised when neither parameter, obj nor block is provided.
+    # @raise ArgumentError raised when using argument(s) with erased position
     # @raise RangeError raised when dereferencing end iterator
     def EMMap.find first, last, obj = nil
     end
@@ -430,6 +530,7 @@ class EMMap
     # @yieldparam [Object] obj object in an element
     # @raise ArgumentError raised when an argument is not a compatible iterator.
     # @raise ArgumentError raised when first and last iterators are not from the same container.
+    # @raise ArgumentError raised when using argument(s) with erased position
     def EMMap.for_each first, last
     end
     # Iterator class, pointing an element in container
@@ -441,12 +542,23 @@ class EMMap
         # increment the position
         # @return [EMMap::Iterator] self
         # @raise RangeError raised when advancing over the end
+        # @raise ArgumentError raised when incrementing erased position
         def inc
         end
         # decrement the position
         # @return [EMMap::Iterator] self
         # @raise RangeError raised when rewinding over the beginning
+        # @raise ArgumentError raised when decrementing erased position
         def dec
+        end
+        # returns true if the iterator is already reached the end
+        # @return [True|False] true|false
+        # @raise ArgumentError raised when the pstion of the iterator is already erased
+        def isEnd?
+        end
+        # returns true if iterator position is already erased
+        # @return [True|False] true|false
+        def isErased?
         end
         # assign the positions of argument
         # @return [EMMap::Iterator] self

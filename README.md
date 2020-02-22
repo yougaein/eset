@@ -34,20 +34,47 @@ Or install it yourself as:
 	    o.f  
     end  
 
-    s.insert Foo.new(rand)  
-    s.insert Foo.new(rand)  
-    s.insert Foo.new(rand)  
-    s.insert Foo.new(rand)  
-    
+    s.add Foo.new(rand)  
+    s.add Foo.new(rand)  
+    s.add Foo.new(rand)  
+    s.add Foo.new(rand)  
+ 
+    y = rand
+    result = s.add Foo.new(y)  
+    p result # true
+    y = rand
+    result = s.add Foo.new(y)  
+    p result # false
+ 
     ESet.for_each s.begin, s.end do |foo|  
 	    p foo.f  
     end  
+
+    # use Iterator object
+
+    it, result = s.insert Foo.new(y = rand)
+    p result # true
+    it, result = s.insert Foo.new(y)
+    p result # false
     
+    s.erase it
+    p s.erased? # true
+    begin
+        s.erase it # 
+    rescue ArgumentError
+        p $! 
+    end
+
     it = s.begin  
-    while it != s.end  
+    while !s.end?
 	    p it.item  
 	    it.inc  
     end
+    begin
+        s.item # already reached the end
+    rescue RangeError
+        p $!
+    end    
     
     jt = it
     it.dec

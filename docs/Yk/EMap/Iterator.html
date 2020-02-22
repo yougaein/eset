@@ -272,6 +272,54 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#isEnd%3F-instance_method" title="#isEnd? (instance method)">#<strong>isEnd?</strong>  &#x21d2; True|False </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>returns true if the iterator is already reached the end.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#isErased%3F-instance_method" title="#isErased? (instance method)">#<strong>isErased?</strong>  &#x21d2; True|False </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>returns true if iterator position is already erased.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#item-instance_method" title="#item (instance method)">#<strong>item</strong>  &#x21d2; Array </a>
     
 
@@ -364,11 +412,11 @@
       <pre class="lines">
 
 
-349
-350</pre>
+432
+433</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 349</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 432</span>
 
 <span class='kw'>def</span> <span class='op'>!=</span>
 <span class='kw'>end</span></pre>
@@ -439,11 +487,11 @@
       <pre class="lines">
 
 
-344
-345</pre>
+427
+428</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 344</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 427</span>
 
 <span class='kw'>def</span> <span class='op'>==</span> <span class='id identifier rubyid_arg'>arg</span>
 <span class='kw'>end</span></pre>
@@ -514,11 +562,11 @@
       <pre class="lines">
 
 
-339
-340</pre>
+422
+423</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 339</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 422</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assign'>assign</span> <span class='id identifier rubyid_arg'>arg</span>
 <span class='kw'>end</span></pre>
@@ -571,11 +619,11 @@
       <pre class="lines">
 
 
-324
-325</pre>
+396
+397</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 324</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 396</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clone'>clone</span>
 <span class='kw'>end</span></pre>
@@ -638,6 +686,20 @@
       
     </li>
   
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>ArgumentError raised when decrementing erased position</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 </div><table class="source_code">
@@ -646,11 +708,11 @@
       <pre class="lines">
 
 
-334
-335</pre>
+408
+409</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 334</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 408</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dec'>dec</span>
 <span class='kw'>end</span></pre>
@@ -713,6 +775,20 @@
       
     </li>
   
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>ArgumentError raised when incrementing erased position</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 </div><table class="source_code">
@@ -721,13 +797,145 @@
       <pre class="lines">
 
 
-329
-330</pre>
+402
+403</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 329</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 402</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inc'>inc</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="isEnd?-instance_method">
+  
+    #<strong>isEnd?</strong>  &#x21d2; <tt>True|False</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>returns true if the iterator is already reached the end</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>True|False</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>true|false</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>ArgumentError raised when the pstion of the iterator is already erased</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+413
+414</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 413</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_isEnd?'>isEnd?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="isErased?-instance_method">
+  
+    #<strong>isErased?</strong>  &#x21d2; <tt>True|False</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>returns true if iterator position is already erased</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>True|False</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>true|false</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+417
+418</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 417</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_isErased?'>isErased?</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -778,11 +986,11 @@
       <pre class="lines">
 
 
-353
-354</pre>
+436
+437</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 353</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 436</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_item'>item</span>
 <span class='kw'>end</span></pre>
@@ -796,7 +1004,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Feb 21 22:53:06 2020 by
+  Generated on Sun Feb 23 08:31:41 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.24 (ruby-2.7.0).
 </div>

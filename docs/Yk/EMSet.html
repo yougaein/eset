@@ -195,6 +195,28 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#add-instance_method" title="#add (instance method)">#<strong>add</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#begin-instance_method" title="#begin (instance method)">#<strong>begin</strong>  &#x21d2; EMSet::Iterator </a>
     
 
@@ -500,11 +522,11 @@
       <pre class="lines">
 
 
-121
-122</pre>
+148
+149</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 121</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 148</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
 <span class='kw'>end</span></pre>
@@ -703,6 +725,20 @@
       
         
         <div class='inline'>
+<p>ArgumentError raised when using argument(s) with erased position</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
 <p>RangeError raised when dereferencing end iterator</p>
 </div>
       
@@ -716,11 +752,11 @@
       <pre class="lines">
 
 
-182
-183</pre>
+224
+225</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 182</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 224</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Yk::EMSet (class)">EMSet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='id identifier rubyid_first'>first</span><span class='comma'>,</span> <span class='id identifier rubyid_last'>last</span><span class='comma'>,</span> <span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='kw'>nil</span>
 <span class='kw'>end</span></pre>
@@ -835,6 +871,20 @@
       
     </li>
   
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>ArgumentError raised when using argument(s) with erased position</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 </div><table class="source_code">
@@ -843,11 +893,11 @@
       <pre class="lines">
 
 
-190
-191</pre>
+233
+234</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 190</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 233</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Yk::EMSet (class)">EMSet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_for_each'>for_each</span> <span class='id identifier rubyid_first'>first</span><span class='comma'>,</span> <span class='id identifier rubyid_last'>last</span>
 <span class='kw'>end</span></pre>
@@ -863,7 +913,179 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="begin-instance_method">
+  <h3 class="signature first" id="add-instance_method">
+  
+    
+      <span class="overload">#<strong>add</strong>(position, obj)  &#x21d2; <tt>True</tt> </span>
+    
+      <span class="overload">#<strong>add</strong>(obj)  &#x21d2; <tt>True</tt> </span>
+    
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+  <p class="tag_title">Overloads:</p>
+  <ul class="overload">
+    
+      
+      <li class="overload_item">
+        <span class="signature">#<strong>add</strong>(position, obj)  &#x21d2; <tt>True</tt> </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>Insert element with an object using a hint and return true if a new element was inserted or false if an equivalent element already existed. Do not return iterator object. More efficient if you do not need inserted position (removed by GC).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>position</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="EMSet/Iterator.html" title="Yk::EMSet::Iterator (class)">EMSet::Iterator</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Hint for the position where the element can be inserted.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>obj</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Object to be pointed by the inserted elements.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>True</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Always return true.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">#<strong>add</strong>(obj)  &#x21d2; <tt>True</tt> </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>Insert element with an object and return true if a new element was inserted or false if an equivalent element already existed. Do not return iterator object. More efficient if you do not need inserted position (removed by GC).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>obj</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>key object to be pointed by the inserted elements.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>True</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Always return true.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+      </li>
+    
+  </ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+188
+189</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 188</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add'>add</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="begin-instance_method">
   
     #<strong>begin</strong>  &#x21d2; <tt><span class='object_link'><a href="EMSet/Iterator.html" title="Yk::EMSet::Iterator (class)">EMSet::Iterator</a></span></tt> 
   
@@ -906,11 +1128,11 @@
       <pre class="lines">
 
 
-124
-125</pre>
+151
+152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 151</span>
 
 <span class='kw'>def</span> <span class='kw'>begin</span>
 <span class='kw'>end</span></pre>
@@ -945,11 +1167,11 @@
       <pre class="lines">
 
 
-133
-134</pre>
+160
+161</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 133</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 160</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clear'>clear</span>
 <span class='kw'>end</span></pre>
@@ -1002,11 +1224,11 @@
       <pre class="lines">
 
 
-127
-128</pre>
+154
+155</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 127</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 154</span>
 
 <span class='kw'>def</span> <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1045,7 +1267,7 @@
         <div class="docstring">
   <div class="discussion">
     
-<p>Removes an element</p>
+<p>Erase an element from the container</p>
 
 
   </div>
@@ -1062,6 +1284,11 @@
         <span class='type'>(<tt><span class='object_link'><a href="EMSet/Iterator.html" title="Yk::EMSet::Iterator (class)">EMSet::Iterator</a></span></tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'>
+<p>to erase</p>
+</div>
       
     </li>
   
@@ -1084,6 +1311,20 @@
       
     </li>
   
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>ArgumentError raised when using argument with erased position</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 </div>
@@ -1095,7 +1336,7 @@
         <div class="docstring">
   <div class="discussion">
     
-<p>Removes a range of elements ([first,last)) from the container. Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.</p>
+<p>Erase a range of elements ([first,last)) from the container. Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.</p>
 
 
   </div>
@@ -1183,6 +1424,20 @@
       
     </li>
   
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>ArgumentError raised when use argument with erased position</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 </div>
@@ -1197,11 +1452,11 @@
       <pre class="lines">
 
 
-164
-165</pre>
+204
+205</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 164</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 204</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_erase'>erase</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span>
 <span class='kw'>end</span></pre>
@@ -1267,6 +1522,24 @@
     </li>
   
 </ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>ArgumentError raised when using argument(s) with erased position</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1274,11 +1547,11 @@
       <pre class="lines">
 
 
-169
-170</pre>
+210
+211</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 169</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 210</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_find'>find</span> <span class='id identifier rubyid_arg'>arg</span>
 <span class='kw'>end</span></pre>
@@ -1317,7 +1590,7 @@
         <div class="docstring">
   <div class="discussion">
     
-<p>Insert element with an object using a hint</p>
+<p>Insert element with an object using a hint and return new iterator object</p>
 
 
   </div>
@@ -1388,7 +1661,7 @@
         <div class="docstring">
   <div class="discussion">
     
-<p>Insert element with an object</p>
+<p>Insert element and return new iterator object</p>
 
 
   </div>
@@ -1446,11 +1719,11 @@
       <pre class="lines">
 
 
-150
-151</pre>
+177
+178</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 150</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 177</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_insert'>insert</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span>
 <span class='kw'>end</span></pre>
@@ -1503,11 +1776,11 @@
       <pre class="lines">
 
 
-139
-140</pre>
+166
+167</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 139</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 166</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lower_bound'>lower_bound</span> 
 <span class='kw'>end</span></pre>
@@ -1560,11 +1833,11 @@
       <pre class="lines">
 
 
-130
-131</pre>
+157
+158</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 130</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 157</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_size'>size</span>
 <span class='kw'>end</span></pre>
@@ -1617,11 +1890,11 @@
       <pre class="lines">
 
 
-136
-137</pre>
+163
+164</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 136</span>
+      <pre class="code"><span class="info file"># File 'for_yard_product.rb', line 163</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_upper_bound'>upper_bound</span>
 <span class='kw'>end</span></pre>
@@ -1635,7 +1908,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Feb 21 22:53:06 2020 by
+  Generated on Sun Feb 23 08:31:40 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.24 (ruby-2.7.0).
 </div>

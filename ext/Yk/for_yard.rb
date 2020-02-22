@@ -55,7 +55,7 @@ EPRE
     when "EMap", "EMMap"
         "    # @overload insert(position, key, value)\n"
     end
-}    #  Insert element with an object using a hint
+}    #  Insert element with an object using a hint and return new iterator object
     #  @param [#{c}::Iterator] position  Hint for the position where the element can be inserted.
 #{
     case(c)
@@ -79,7 +79,7 @@ EPRE
     when "EMap", "EMMap"
         "    # @overload insert(key, value)\n"
     end
-}    #  Insert element with an object
+}    #  Insert element and return new iterator object
 #{
     case(c)
     when "ESet", "EMSet"
@@ -96,6 +96,55 @@ EPRE
         "    #  @return [#{c}::Iterator] An iterator pointing to either the newly inserted element.\n"
     end
 }    def insert *args
+    end
+#{
+    case(c)
+    when "ESet", "EMSet"
+        "    # @overload add(position, obj)\n"
+    when "EMap", "EMMap"
+        "    # @overload add(position, key, value)\n"
+    end
+}    #  Insert element with an object using a hint and return true if a new element was inserted or false if an equivalent element already existed. Do not return iterator object. More efficient if you do not need inserted position (removed by GC). 
+    #  @param [#{c}::Iterator] position  Hint for the position where the element can be inserted.
+#{
+    case(c)
+    when "ESet", "EMSet"
+        "    #  @param [Object] obj  Object to be pointed by the inserted elements.\n"
+    when "EMap", "EMMap"
+        "    #  @param [Object] key key object to be pointed by the inserted elements.\n" +
+        "    #  @param [Object] value value object to be pointed by the inserted elements.\n"
+    end
+}#{
+    case(c)
+    when "ESet", "EMap"
+        "    #  @return [True|False] true if a new element was inserted or false if an equivalent element already existed.\n"
+    else
+        "    #  @return [True] Always return true.\n"
+    end
+}#{
+    case(c)
+    when "ESet", "EMSet"
+        "    # @overload add(obj)\n"
+    when "EMap", "EMMap"
+        "    # @overload add(key, value)\n"
+    end
+}    #  Insert element with an object and return true if a new element was inserted or false if an equivalent element already existed. Do not return iterator object. More efficient if you do not need inserted position (removed by GC). 
+#{
+    case(c)
+    when "ESet", "EMSet"
+        "    #  @param [Object] obj key object to be pointed by the inserted elements.\n"
+    when "EMap", "EMMap"
+        "    #  @param [Object] key key object to be pointed by the inserted elements.\n" +
+        "    #  @param [Object] value value object to be pointed by the inserted elements.\n"
+    end
+}#{
+    case(c)
+    when "ESet", "EMap"
+        "    #  @return [True|False] true if a new element was inserted or false if an equivalent element already existed.\n"
+    else
+        "    #  @return [True] Always return true.\n"
+    end
+}    def add *args
     end
 END
     fw.flush
@@ -119,22 +168,25 @@ FOR_EMAP
     fw.flush
     fw.write <<END2
     # @overload erase(position)
-    #  Removes an element
-    #  @param [#{c}::Iterator] position
+    #  Erase an element from the container
+    #  @param [#{c}::Iterator] position to erase
     #  @raise ArgumentError raised when an argument is not a compatible iterator.
+    #  @raise ArgumentError raised when using argument with erased position
     # @overload erase(frist, last)
-    #  Removes a range of elements ([first,last)) from the container.
+    #  Erase a range of elements ([first,last)) from the container.
     #  Iterators specifying a range within the set container to be removed: [first,last). i.e., the range includes all the elements between first and last, including the element pointed by first but not the one pointed by last.
     #  @param [#{c}::Iterator] first first iterator.
     #  @param [#{c}::Iterator] last last iterator.
     #  @raise ArgumentError raised when an argument is not a compatible iterator.
     #  @raise ArgumentError raised when first and last iterators are not from the same container.
     #  @raise RangeError raised when erasing end iterator
+    #  @raise ArgumentError raised when use argument with erased position
     def erase *args
     end
     # Searches the container for an element with an object equivalent to the argument.
     # @param [Object] arg to search equivalency.
     # @return [#{c}::Iterator] iterator pointing the element with equivalent object.
+    # @raise ArgumentError raised when using argument(s) with erased position
     def find arg
     end
     # Searches the container for an element with an object equivalent to the third argument and/or validated with the provided block in a range of elements ([first,last)), 'obj' and returns an iterator to it if found, otherwise it returns an iterator to .
@@ -147,6 +199,7 @@ FOR_EMAP
     # @raise ArgumentError raised when an argument is not a compatible iterator.
     # @raise ArgumentError raised when first and last iterators are not from the same container.
     # @raise ArgumentError raised when neither parameter, obj nor block is provided.
+    # @raise ArgumentError raised when using argument(s) with erased position
     # @raise RangeError raised when dereferencing end iterator
     def #{c}.find first, last, obj = nil
     end
@@ -156,6 +209,7 @@ FOR_EMAP
     # @yieldparam [Object] obj object in an element
     # @raise ArgumentError raised when an argument is not a compatible iterator.
     # @raise ArgumentError raised when first and last iterators are not from the same container.
+    # @raise ArgumentError raised when using argument(s) with erased position
     def #{c}.for_each first, last
     end
     # Iterator class, pointing an element in container
@@ -167,12 +221,23 @@ FOR_EMAP
         # increment the position
         # @return [#{c}::Iterator] self
         # @raise RangeError raised when advancing over the end
+        # @raise ArgumentError raised when incrementing erased position
         def inc
         end
         # decrement the position
         # @return [#{c}::Iterator] self
         # @raise RangeError raised when rewinding over the beginning
+        # @raise ArgumentError raised when decrementing erased position
         def dec
+        end
+        # returns true if the iterator is already reached the end
+        # @return [True|False] true|false
+        # @raise ArgumentError raised when the pstion of the iterator is already erased
+        def isEnd?
+        end
+        # returns true if iterator position is already erased
+        # @return [True|False] true|false
+        def isErased?
         end
         # assign the positions of argument
         # @return [#{c}::Iterator] self

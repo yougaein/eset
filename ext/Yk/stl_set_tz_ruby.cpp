@@ -271,6 +271,15 @@ struct ESetWrap{
 	}
 
 
+	static VALUE eMSet_each(VALUE self) {
+		EMSet* p = eMSet(self);
+		VALUE ret = Qnil;
+		for(typename EMSet::iterator it = p->begin() ; it != p->end() ; ++it)
+			ret = rb_yield(toValue(*it));
+		return ret;
+	}
+
+
 	static VALUE eMSetIt_clone(VALUE self) {
 		iterator* it = eMSetIt(self);
 		VALUE itv = eMSetIt_alloc(cESetIt);
@@ -332,6 +341,68 @@ struct ESetWrap{
 		}
 	}
 
+	static VALUE eMSetIt_succ(VALUE self){
+		VALUE ret = eMSetIt_clone(self);
+		eMSetIt_inc(ret);
+		return ret;
+	}
+
+	static VALUE eMSetIt_spaceshipOp(VALUE self, VALUE other){
+		iterator* a = eMSetIt(self);
+		iterator* b = eMSetIt(other);
+		if(a->_M_node->_TZ_destroyer){
+			rb_raise(rb_eArgError, "the left operand is already erased");
+			return Qnil;
+		}
+		if(b->_M_node->_TZ_destroyer){
+			rb_raise(rb_eArgError, "the right operand is already erased");
+			return Qnil;
+		}
+		if((EMSet*)a->_M_node->_TZ_tree != (EMSet*)b->_M_node->_TZ_tree){
+			rb_raise(rb_eArgError, "the left operand and the right operand are not from the same container");
+			return Qnil;
+		}
+		if(*a == *b)
+			return INT2FIX(0);
+		if(*a == ((EMSet*)a->_M_node->_TZ_tree)->end()){
+			return INT2FIX(1);
+		}else{
+			if(*b == ((EMSet*)b->_M_node->_TZ_tree)->end()){
+				return INT2FIX(-1);
+			}else{
+				VALUE res = rb_funcall(**a, ID_LESS, 1, **b);
+				if(res == Qtrue)
+					return INT2FIX(-1);
+				else{
+					res = rb_funcall(**b, ID_LESS, 1, **a);
+					if(res == Qtrue)
+						return INT2FIX(1);
+					else{
+						iterator tmp = *a;
+						while(1){
+							++tmp;
+							if(tmp == ((EMSet*)a->_M_node->_TZ_tree)->end() || rb_funcall(*tmp, ID_LESS, 1, **b) != Qfalse || rb_funcall(*tmp, ID_LESS, 1, **a) != Qfalse)
+								break;
+							if(tmp == *b)
+								return INT2FIX(1);
+						}
+						tmp = *a;
+						while(1){
+							--tmp;
+							if(rb_funcall(**a, ID_LESS, 1, **b) != Qfalse || rb_funcall(**b, ID_LESS, 1, **a) != Qfalse)
+								break;
+							if(tmp == *b)
+								return INT2FIX(-1);
+							if(tmp == ((EMSet*)a->_M_node->_TZ_tree)->begin()){
+								rb_raise(rb_eArgError, "Unknown range");
+								return Qnil;								
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 
 	static VALUE eMSet_find(int argc, VALUE *argv, VALUE self){
 		VALUE b, e, v;
@@ -514,6 +585,7 @@ struct ESetWrap{
 		rb_define_method(cESet, "size", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_size), 0);
 		rb_define_method(cESet, "clear", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_clear), 0);
 
+		rb_define_method(cESet, "each", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_each), 0);
 		rb_define_method(cESet, "begin", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_begin), 0);
 		rb_define_method(cESet, "end", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_end), 0);
 		rb_define_method(cESet, "upper_bound", RUBY_METHOD_FUNC(ESetWrap<EMSet>::eMSet_upper_bound), 1);
@@ -603,7 +675,7 @@ struct ESetWrapMap_ : ESetWrap<E>{
 	static void Init_eset(const char* n){
 		ESetWrap<E>::Init_eset(n);
 		rb_define_method(ESetWrap<E>::cESet, "insert", RUBY_METHOD_FUNC(eMSet_insert), -1);
-		rb_define_method(ESetWrap<E>::cESet, "add", RUBY_METHOD_FUNC(eMSet_insert), -1);
+		rb_define_method(ESetWrap<E>::cESet, "add", RUBY_METHOD_FUNC(eMSet_add), -1);
 		rb_define_method(ESetWrap<E>::cESetIt, "item", RUBY_METHOD_FUNC(eMSetIt_item), 0);
 	};
 };
@@ -671,7 +743,7 @@ struct ESetWrapMap<EMap> : ESetWrapMap_<EMap>{
 	static void Init_eset(const char* n){
 		ESetWrapMap_<EMap>::Init_eset(n);
 		rb_define_method(ESetWrap<EMap>::cESet, "insert_or_assign", RUBY_METHOD_FUNC(eMSet_insert_or_assign), -1);
-		rb_define_method(ESetWrap<EMap>::cESet, "add_or_assign", RUBY_METHOD_FUNC(eMSet_insert_or_assign), -1);
+		rb_define_method(ESetWrap<EMap>::cESet, "add_or_assign", RUBY_METHOD_FUNC(eMSet_add_or_assign), -1);
 }	
 };
 
@@ -736,7 +808,7 @@ struct ESetWrapSet : ESetWrap<EMSet>{
 	static void Init_eset(const char* n){
 		ESetWrap<EMSet>::Init_eset(n);
 		rb_define_method(ESetWrap<EMSet>::cESet, "insert", RUBY_METHOD_FUNC(eMSet_insert), -1);
-		rb_define_method(ESetWrap<EMSet>::cESet, "add", RUBY_METHOD_FUNC(eMSet_insert), -1);
+		rb_define_method(ESetWrap<EMSet>::cESet, "add", RUBY_METHOD_FUNC(eMSet_add), -1);
 		rb_define_method(ESetWrap<EMSet>::cESetIt, "item", RUBY_METHOD_FUNC(eMSetIt_item), 0);
 	};
 };

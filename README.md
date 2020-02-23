@@ -23,8 +23,9 @@ Or install it yourself as:
     require 'Yk/ESet'
     include Yk
 
+
     class Foo
-        attr :f  
+	    attr :f  
 	    def initialize f  
 		    @f = f  
 	    end  
@@ -34,48 +35,49 @@ Or install it yourself as:
 	    o.f  
     end  
 
+    # add method does not return iterator object (much efficient)
     s.add Foo.new(rand)  
     s.add Foo.new(rand)  
     s.add Foo.new(rand)  
     s.add Foo.new(rand)  
- 
+
     y = rand
     result = s.add Foo.new(y)  
     p result # true
-    y = rand
     result = s.add Foo.new(y)  
     p result # false
- 
+
     ESet.for_each s.begin, s.end do |foo|  
 	    p foo.f  
     end  
 
-    # use Iterator object
-
+    # insert method returns iterator object
     it, result = s.insert Foo.new(y = rand)
     p result # true
     it, result = s.insert Foo.new(y)
     p result # false
-    
+
     s.erase it
-    p s.erased? # true
+    p it.erased? # true
     begin
-        s.erase it # 
+	    s.erase it # wrongly erase twice
     rescue ArgumentError
-        p $! 
+    	p $! 
     end
 
     it = s.begin  
-    while !s.end?
+    while !it.end?
 	    p it.item  
 	    it.inc  
     end
+
     begin
-        s.item # already reached the end
+	    it.item # already reached the end
     rescue RangeError
-        p $!
+	    p $!
     end    
-    
+
+    # iterator is not value type but object type
     jt = it
     it.dec
     p it == jt #true
@@ -83,8 +85,6 @@ Or install it yourself as:
     jt.dec
     p it != jt #true
 
-
-    
 See [Document page](https://yougaein.github.io/eset/index.html)  
 
 

@@ -1748,7 +1748,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	static_cast<_Link_type>(_Rb_tree_rebalance_for_erase
 				(const_cast<_Base_ptr>(__position._M_node),
 				 this->_M_impl._M_header));
-      _M_destroy_node(__y);
+	  if(__y->_TZ_refCount == 0){
+		  _M_destroy_node(__y);
+    }else{
+		  __y->prepareDestroy(&_Rb_tree_impl<_Compare>::destroyNode);
+    }
       --_M_impl._M_node_count;
     }
 
